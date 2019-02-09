@@ -293,22 +293,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowMassPoints: 1
-  ShowMuscles: 1
+  ShowMuscles: 0
   ShowSprings: 1
   SpringSnapPoint: 1.2
-  StiffCoeff: 80
-  FrictCoeff: 0.6
+  StiffCoeff: 0
+  FrictCoeff: 0
   SynapseSignalGainPerSecond: 11
   SynapseSignalDegredationPerSecond: 5
-  ShowNeurons: 1
+  ShowNeurons: 0
   ShowUnconnectedNeurons: 0
   ShowAxons: 0
   ShowMuscleAxons: 1
   UpdateNeuronPositions: 0
-  AirFrictionCoefficient: 0.002
-  GroundAbsorptionConstant: 2
-  GroundRepulsionConstant: 100
-  GroundFrictionConstant: 0.6
+  AirFrictionCoefficient: 3
+  GroundAbsorptionConstant: 10
+  GroundRepulsionConstant: 10
+  GroundFrictionConstant: 0
 --- !u!4 &1290980129
 Transform:
   m_ObjectHideFlags: 0
@@ -342,8 +342,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!136 &1492283393
-CapsuleCollider:
+--- !u!65 &1492283393
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -352,9 +352,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000001, y: 2, z: 1.0000002}
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &1492283394
 MeshRenderer:
@@ -410,7 +409,7 @@ Transform:
   m_GameObject: {fileID: 1492283392}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1, z: 0}
-  m_LocalScale: {x: 25, y: 0.2, z: 25}
+  m_LocalScale: {x: 25, y: 1, z: 25}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -455,7 +454,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1694340788}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

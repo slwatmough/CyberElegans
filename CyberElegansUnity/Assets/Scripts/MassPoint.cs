@@ -9,9 +9,31 @@ namespace Orbitaldrop.Cyberelegans
         public Vector3 vel { get; private set; }
         public Vector3 force { get; private set; }
 
-        public MassPoint(float mass, Vector3 pos) : base(pos)
+        public GameObject GameObject { get; private set; }
+        public Material Material { get; private set; }
+        public Rigidbody RigidBody { get; private set; }
+
+        public MassPoint(GameObject parent, float mass, Vector3 pos) : base(pos)
         {
             this.mass = mass;
+
+            if (GameObject == null)
+            {
+                GameObject = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                GameObject.transform.SetParent(parent.transform);
+                GameObject.transform.position = pos;
+                GameObject.name = "Mass";
+
+                RigidBody = GameObject.AddComponent<Rigidbody>();
+                RigidBody.mass = mass;
+                RigidBody.MovePosition(pos);                
+                RigidBody.isKinematic = true;
+
+                if (Material == null)
+                {
+                    Material = GameObject.GetComponent<Renderer>().material;
+                }
+            }
         }
 
         public void ApplyForce(Vector3 force)
@@ -19,11 +41,21 @@ namespace Orbitaldrop.Cyberelegans
             this.force += force;
         }
 
+        int frame = 0;
+
         public void Update()
         {
+            frame++;
+            if (frame == 2)
+            {
+                RigidBody.isKinematic = false;
+            }
+
+            return;
+
             ApplyForce(new Vector3(0.0f, Physics.Gravity * mass, 0.0f));
 
-            if (pos.z <= Physics.GroundHeight)
+            if (pos.y <= Physics.GroundHeight)
             {
                 var v = new Vector3(vel.x, 0.0f, vel.z);
 
@@ -65,10 +97,19 @@ namespace Orbitaldrop.Cyberelegans
             ApplyForce(-vel * UniversalConstantsBehaviour.Instance.AirFrictionCoefficient);
         }
 
-        public void timeTick(float dt)
+        public void FixedUpdate()
         {
-            pos += vel * dt;
-            vel += (force / mass) * dt;
+            if (RigidBody != null)
+            {
+                RigidBody.AddForce(force, ForceMode.Force);
+
+                pos = RigidBody.position;
+            }
+
+            return;
+
+            pos += vel * Time.deltaTime;
+            vel += (force / mass) * Time.deltaTime;
         }
 
         public virtual void Select()
@@ -80,31 +121,22 @@ namespace Orbitaldrop.Cyberelegans
         {
             force = Vector3.zero;
         }
-
-        GameObject shape;
-        Material material;
-
+        
         public void Draw(GameObject masspointHolder)
         {
             var r = 0.39f;
             var g = 0.39f;
             var b = 0.3f;
             
-            if (shape == null)
+            GameObject.transform.localScale = new Vector3(0.03f, 0.03f, 0.03f);
+            Material.color = new Color(r, g, b);
+            
+            if (Vector3.Dot(force, Vector3.up) > 0.7f)
             {
-                shape = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                shape.transform.SetParent(masspointHolder.transform);
-                shape.name = "Mass";
-
-                if (material == null)
-                {
-                    material = shape.GetComponent<Renderer>().material;
-                }
+                Debug.Log("Scale required = " + 9.81f / force.magnitude);
             }
 
-            shape.transform.position = pos;
-            shape.transform.localScale = new Vector3(0.03f, 0.03f, 0.03f);
-            material.color = new Color(r, g, b);
+            Debug.DrawLine(pos, pos + (force / 9.81f), Color.magenta);
         }
     }
 }

@@ -9,9 +9,9 @@ namespace Orbitaldrop.Cyberelegans
         public float stiffnessScaler { get; set; }
         public float frictionScalar { get; set; }
 
-        private readonly float originalSpringLength;
+        private readonly float restLength;
 
-        public Spring(float length, float stiffnessScaler, float frictionScalar, MassPoint p1, MassPoint p2) : base(p1, p2)
+        public Spring(GameObject parent, float length, float stiffnessScaler, float frictionScalar, MassPoint p1, MassPoint p2) : base(p1, p2)
         {
             this.length = length;
 
@@ -23,7 +23,7 @@ namespace Orbitaldrop.Cyberelegans
             this.stiffnessScaler = stiffnessScaler;
             this.frictionScalar = frictionScalar;
 
-            this.originalSpringLength = (P1.pos - P2.pos).magnitude;
+            this.restLength = (P1.pos - P2.pos).magnitude;
         }
 
         public void Update()
@@ -33,7 +33,7 @@ namespace Orbitaldrop.Cyberelegans
                 var springVector = P1.pos - P2.pos;
                 var r = springVector.magnitude;
 
-                if (r < 0.05f || r >= originalSpringLength * 1.2f)
+                if (r < 0.05f || r >= restLength * 1.2f)
                 {
                     status = 0;
                     return;
@@ -50,6 +50,11 @@ namespace Orbitaldrop.Cyberelegans
                 P1.ApplyForce(force);
                 P2.ApplyForce(-force);
             }
+        }
+
+        public void FixedUpdate()
+        {
+
         }
 
         public void Draw(GameObject springHolder)

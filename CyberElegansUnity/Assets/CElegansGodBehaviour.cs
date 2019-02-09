@@ -19,25 +19,30 @@ public class CElegansGodBehaviour : MonoBehaviour
     void Start()
     {
         var neuronHolder = new GameObject("Neurons");
-        neuronHolder.transform.SetParent(transform);
+        neuronHolder.transform.SetParent(transform, false);
 
         var musclesHolder = new GameObject("Muscles");
-        musclesHolder.transform.SetParent(transform);
+        musclesHolder.transform.SetParent(transform, false);
 
         var masspointHolder = new GameObject("Mass");
-        masspointHolder.transform.SetParent(transform);
+        masspointHolder.transform.SetParent(transform, false);
 
         var springHolder = new GameObject("Springs");
-        springHolder.transform.SetParent(transform);
+        springHolder.transform.SetParent(transform, false);
 
-        celegans = new Orbitaldrop.Cyberelegans.CElegans(0.5f, 26, Neurons.text, Connections.text, Muscles.text, neuronHolder, musclesHolder, masspointHolder, springHolder);
-        celegans.iteration(0.0f);
+        celegans = new Orbitaldrop.Cyberelegans.CElegans(0.5f, 26, Neurons.text, Connections.text, Muscles.text, gameObject, neuronHolder, musclesHolder, masspointHolder, springHolder);
+        celegans.Update(0.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        celegans.iteration(Time.deltaTime);
+        celegans.Update(Time.deltaTime);
         celegans.Draw();
+    }
+
+    void FixedUpdate()
+    {
+        celegans.FixedUpdate();
     }
 }
