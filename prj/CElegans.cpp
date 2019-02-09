@@ -150,7 +150,7 @@ CElegans::CElegans(const double i_length, const int i_size)//Класс Червь
 
 	//return;
 
-addMuscle( new CMuscle(MStrength,mPoint[  0*9 + 1], mPoint[  1*9 + 1],"VL02") );
+	addMuscle( new CMuscle(MStrength,mPoint[  0*9 + 1], mPoint[  1*9 + 1],"VL02") );
 	addMuscle( new CMuscle(MStrength,mPoint[  2*9 + 1], mPoint[  1*9 + 1],"VL02") );
 	addMuscle( new CMuscle(MStrength,mPoint[  2*9 + 1], mPoint[  3*9 + 1],"VL04") );
 	addMuscle( new CMuscle(MStrength,mPoint[  4*9 + 1], mPoint[  3*9 + 1],"VL04") );
