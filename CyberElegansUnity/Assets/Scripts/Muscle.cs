@@ -4,13 +4,11 @@ namespace Orbitaldrop.Cyberelegans
 {
     public class Muscle : Connector
     {
-        public float strength { get; set; }
         public float length { get; set; }
         public Synapse synapse { get; set; }
 
-        public Muscle(float stength, MassPoint p1, MassPoint p2, string name) : base(p1, p2)
+        public Muscle(MassPoint p1, MassPoint p2, string name) : base(p1, p2)
         {
-            this.strength = strength;
             this.status = 1;
             synapse = new Synapse(1.0f, name);
             synapse.pos = (p1.pos + p2.pos) / 2.0f;

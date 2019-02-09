@@ -92,13 +92,12 @@ namespace Orbitaldrop.Cyberelegans
             sphere.transform.position = pos;
             sphereMaterial.color = new Color(r, g, b);
 
-            bool isVisible = axons.Count > 0 || !UniversalConstantsBehaviour.Instance.HideUnconnectedNeurons;
+            bool isVisible = axons.Count > 0 || UniversalConstantsBehaviour.Instance.ShowUnconnectedNeurons;
             sphere.SetActive(isVisible);
 
             if (UniversalConstantsBehaviour.Instance.ShowAxons && isVisible)
             {
                 for(int a = 0; a < axons.Count; a++) { axons[a].Draw(this, r, g, b, selected, neuronHolder); }
-                //axons.ForEach(a => a.Draw(this, r, g, b, selected, neuronHolder, cElegansGodBehaviour));
             }
 
             if (isVisible)

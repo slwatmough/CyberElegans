@@ -83,32 +83,32 @@ namespace Orbitaldrop.Cyberelegans
             addMPoint(new MassPoint(0.05f, vshift + new Vector3(-1.5f * dx, -dl * wp[0] / 2f, 0.35f * dl * wp[0])));
             addMPoint(new MassPoint(0.05f, vshift + new Vector3(-1.5f * dx, -dl * wp[0] / 2f, -0.35f * dl * wp[0])));
 
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[0], mPoint[1]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[0], mPoint[2]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[0], mPoint[3]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[0], mPoint[4]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[0], mPoint[5]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[0], mPoint[6]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[0], mPoint[7]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[0], mPoint[8]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[0], mPoint[1]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[0], mPoint[2]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[0], mPoint[3]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[0], mPoint[4]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[0], mPoint[5]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[0], mPoint[6]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[0], mPoint[7]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[0], mPoint[8]));
             /**/                                             
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[1], mPoint[2]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[2], mPoint[3]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[3], mPoint[4]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[4], mPoint[5]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[5], mPoint[6]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[6], mPoint[7]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[7], mPoint[8]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[8], mPoint[1]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[1], mPoint[2]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[2], mPoint[3]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[3], mPoint[4]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[4], mPoint[5]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[5], mPoint[6]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[6], mPoint[7]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[7], mPoint[8]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[8], mPoint[1]));
             /**/                                     
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[1], mPoint[5]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[2], mPoint[6]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[3], mPoint[7]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[4], mPoint[8]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[1], mPoint[6]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[2], mPoint[5]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[3], mPoint[8]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[4], mPoint[7]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[1], mPoint[5]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[2], mPoint[6]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[3], mPoint[7]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[4], mPoint[8]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[1], mPoint[6]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[2], mPoint[5]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[3], mPoint[8]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[4], mPoint[7]));
 
             table[nextTable++] = new Neuron[MAX_NEURONS_IN_TABLE_ENTRY];
             #endregion
@@ -132,269 +132,269 @@ namespace Orbitaldrop.Cyberelegans
 
                 //============
 
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[(i - 1) * 9], mPoint[i * 9]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9], mPoint[i * 9]));
 
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[i * 9 + 1], mPoint[i * 9 + 2]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[i * 9 + 2], mPoint[i * 9 + 3]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[i * 9 + 3], mPoint[i * 9 + 4]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[i * 9 + 4], mPoint[i * 9 + 5]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[i * 9 + 5], mPoint[i * 9 + 6]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[i * 9 + 6], mPoint[i * 9 + 7]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[i * 9 + 7], mPoint[i * 9 + 8]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[i * 9 + 8], mPoint[i * 9 + 1]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 1], mPoint[i * 9 + 2]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 2], mPoint[i * 9 + 3]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 3], mPoint[i * 9 + 4]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 4], mPoint[i * 9 + 5]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 5], mPoint[i * 9 + 6]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 6], mPoint[i * 9 + 7]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 7], mPoint[i * 9 + 8]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 8], mPoint[i * 9 + 1]));
                                      
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[i * 9 + 1], mPoint[i * 9 + 0]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[i * 9 + 2], mPoint[i * 9 + 0]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[i * 9 + 3], mPoint[i * 9 + 0]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[i * 9 + 4], mPoint[i * 9 + 0]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[i * 9 + 5], mPoint[i * 9 + 0]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[i * 9 + 6], mPoint[i * 9 + 0]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[i * 9 + 7], mPoint[i * 9 + 0]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[i * 9 + 8], mPoint[i * 9 + 0]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 1], mPoint[i * 9 + 0]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 2], mPoint[i * 9 + 0]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 3], mPoint[i * 9 + 0]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 4], mPoint[i * 9 + 0]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 5], mPoint[i * 9 + 0]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 6], mPoint[i * 9 + 0]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 7], mPoint[i * 9 + 0]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 8], mPoint[i * 9 + 0]));
                                      
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 1], mPoint[i * 9 + 0]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 2], mPoint[i * 9 + 0]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 3], mPoint[i * 9 + 0]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 4], mPoint[i * 9 + 0]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 5], mPoint[i * 9 + 0]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 6], mPoint[i * 9 + 0]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 7], mPoint[i * 9 + 0]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 8], mPoint[i * 9 + 0]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 1], mPoint[i * 9 + 0]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 2], mPoint[i * 9 + 0]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 3], mPoint[i * 9 + 0]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 4], mPoint[i * 9 + 0]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 5], mPoint[i * 9 + 0]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 6], mPoint[i * 9 + 0]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 7], mPoint[i * 9 + 0]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 8], mPoint[i * 9 + 0]));
                 /**/                 
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff / 2, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 1], mPoint[i * 9 + 2]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff / 2, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 2], mPoint[i * 9 + 3]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff / 2, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 3], mPoint[i * 9 + 4]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff / 2, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 4], mPoint[i * 9 + 5]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff / 2, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 5], mPoint[i * 9 + 6]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff / 2, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 6], mPoint[i * 9 + 7]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff / 2, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 7], mPoint[i * 9 + 8]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff / 2, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 8], mPoint[i * 9 + 1]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 1], mPoint[i * 9 + 2]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 2], mPoint[i * 9 + 3]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 3], mPoint[i * 9 + 4]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 4], mPoint[i * 9 + 5]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 5], mPoint[i * 9 + 6]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 6], mPoint[i * 9 + 7]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 7], mPoint[i * 9 + 8]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 8], mPoint[i * 9 + 1]));
                 /**/                 
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff / 2, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 2], mPoint[i * 9 + 1]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff / 2, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 3], mPoint[i * 9 + 2]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff / 2, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 4], mPoint[i * 9 + 3]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff / 2, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 5], mPoint[i * 9 + 4]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff / 2, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 6], mPoint[i * 9 + 5]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff / 2, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 7], mPoint[i * 9 + 6]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff / 2, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 8], mPoint[i * 9 + 7]));
-                addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff / 2, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 1], mPoint[i * 9 + 8]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 2], mPoint[i * 9 + 1]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 3], mPoint[i * 9 + 2]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 4], mPoint[i * 9 + 3]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 5], mPoint[i * 9 + 4]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 6], mPoint[i * 9 + 5]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 7], mPoint[i * 9 + 6]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 8], mPoint[i * 9 + 7]));
+                addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 1], mPoint[i * 9 + 8]));
 
                 table[nextTable++] = new Neuron[MAX_NEURONS_IN_TABLE_ENTRY];
             }
 
-            addMuscle(new Muscle(Physics.MStrength, mPoint[0 * 9 + 1], mPoint[1 * 9 + 1], "VL02"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[2 * 9 + 1], mPoint[1 * 9 + 1], "VL02"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[2 * 9 + 1], mPoint[3 * 9 + 1], "VL04"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[4 * 9 + 1], mPoint[3 * 9 + 1], "VL04"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[4 * 9 + 1], mPoint[5 * 9 + 1], "VL06"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[6 * 9 + 1], mPoint[5 * 9 + 1], "VL06"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[6 * 9 + 1], mPoint[7 * 9 + 1], "VL08"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[8 * 9 + 1], mPoint[7 * 9 + 1], "VL08"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[8 * 9 + 1], mPoint[9 * 9 + 1], "VL10"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[10 * 9 + 1], mPoint[9 * 9 + 1], "VL10"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[10 * 9 + 1], mPoint[11 * 9 + 1], "VL12"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[12 * 9 + 1], mPoint[11 * 9 + 1], "VL12"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[12 * 9 + 1], mPoint[13 * 9 + 1], "VL14"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[14 * 9 + 1], mPoint[13 * 9 + 1], "VL14"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[14 * 9 + 1], mPoint[15 * 9 + 1], "VL16"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[16 * 9 + 1], mPoint[15 * 9 + 1], "VL16"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[16 * 9 + 1], mPoint[17 * 9 + 1], "VL18"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[18 * 9 + 1], mPoint[17 * 9 + 1], "VL18"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[18 * 9 + 1], mPoint[19 * 9 + 1], "VL20"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[20 * 9 + 1], mPoint[19 * 9 + 1], "VL20"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[20 * 9 + 1], mPoint[21 * 9 + 1], "VL21"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[22 * 9 + 1], mPoint[21 * 9 + 1], "VL21"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[22 * 9 + 1], mPoint[23 * 9 + 1], "VL22"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[24 * 9 + 1], mPoint[23 * 9 + 1], "VL22"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[24 * 9 + 1], mPoint[25 * 9 + 1], "VL23"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[26 * 9 + 1], mPoint[25 * 9 + 1], "VL23"));
+            addMuscle(new Muscle(mPoint[0 * 9 + 1], mPoint[1 * 9 + 1], "VL02"));
+            addMuscle(new Muscle(mPoint[2 * 9 + 1], mPoint[1 * 9 + 1], "VL02"));
+            addMuscle(new Muscle(mPoint[2 * 9 + 1], mPoint[3 * 9 + 1], "VL04"));
+            addMuscle(new Muscle(mPoint[4 * 9 + 1], mPoint[3 * 9 + 1], "VL04"));
+            addMuscle(new Muscle(mPoint[4 * 9 + 1], mPoint[5 * 9 + 1], "VL06"));
+            addMuscle(new Muscle(mPoint[6 * 9 + 1], mPoint[5 * 9 + 1], "VL06"));
+            addMuscle(new Muscle(mPoint[6 * 9 + 1], mPoint[7 * 9 + 1], "VL08"));
+            addMuscle(new Muscle(mPoint[8 * 9 + 1], mPoint[7 * 9 + 1], "VL08"));
+            addMuscle(new Muscle(mPoint[8 * 9 + 1], mPoint[9 * 9 + 1], "VL10"));
+            addMuscle(new Muscle(mPoint[10 * 9 + 1], mPoint[9 * 9 + 1], "VL10"));
+            addMuscle(new Muscle(mPoint[10 * 9 + 1], mPoint[11 * 9 + 1], "VL12"));
+            addMuscle(new Muscle(mPoint[12 * 9 + 1], mPoint[11 * 9 + 1], "VL12"));
+            addMuscle(new Muscle(mPoint[12 * 9 + 1], mPoint[13 * 9 + 1], "VL14"));
+            addMuscle(new Muscle(mPoint[14 * 9 + 1], mPoint[13 * 9 + 1], "VL14"));
+            addMuscle(new Muscle(mPoint[14 * 9 + 1], mPoint[15 * 9 + 1], "VL16"));
+            addMuscle(new Muscle(mPoint[16 * 9 + 1], mPoint[15 * 9 + 1], "VL16"));
+            addMuscle(new Muscle(mPoint[16 * 9 + 1], mPoint[17 * 9 + 1], "VL18"));
+            addMuscle(new Muscle(mPoint[18 * 9 + 1], mPoint[17 * 9 + 1], "VL18"));
+            addMuscle(new Muscle(mPoint[18 * 9 + 1], mPoint[19 * 9 + 1], "VL20"));
+            addMuscle(new Muscle(mPoint[20 * 9 + 1], mPoint[19 * 9 + 1], "VL20"));
+            addMuscle(new Muscle(mPoint[20 * 9 + 1], mPoint[21 * 9 + 1], "VL21"));
+            addMuscle(new Muscle(mPoint[22 * 9 + 1], mPoint[21 * 9 + 1], "VL21"));
+            addMuscle(new Muscle(mPoint[22 * 9 + 1], mPoint[23 * 9 + 1], "VL22"));
+            addMuscle(new Muscle(mPoint[24 * 9 + 1], mPoint[23 * 9 + 1], "VL22"));
+            addMuscle(new Muscle(mPoint[24 * 9 + 1], mPoint[25 * 9 + 1], "VL23"));
+            addMuscle(new Muscle(mPoint[26 * 9 + 1], mPoint[25 * 9 + 1], "VL23"));
                                  
-            addMuscle(new Muscle(Physics.MStrength, mPoint[0 * 9 + 2], mPoint[1 * 9 + 2], "VR02"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[2 * 9 + 2], mPoint[1 * 9 + 2], "VR02"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[2 * 9 + 2], mPoint[3 * 9 + 2], "VR04"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[4 * 9 + 2], mPoint[3 * 9 + 2], "VR04"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[4 * 9 + 2], mPoint[5 * 9 + 2], "VR06"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[6 * 9 + 2], mPoint[5 * 9 + 2], "VR06"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[6 * 9 + 2], mPoint[7 * 9 + 2], "VR08"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[8 * 9 + 2], mPoint[7 * 9 + 2], "VR08"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[8 * 9 + 2], mPoint[9 * 9 + 2], "VR10"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[10 * 9 + 2], mPoint[9 * 9 + 2], "VR10"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[10 * 9 + 2], mPoint[11 * 9 + 2], "VR12"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[12 * 9 + 2], mPoint[11 * 9 + 2], "VR12"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[12 * 9 + 2], mPoint[13 * 9 + 2], "VR14"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[14 * 9 + 2], mPoint[13 * 9 + 2], "VR14"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[14 * 9 + 2], mPoint[15 * 9 + 2], "VR16"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[16 * 9 + 2], mPoint[15 * 9 + 2], "VR16"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[16 * 9 + 2], mPoint[17 * 9 + 2], "VR18"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[18 * 9 + 2], mPoint[17 * 9 + 2], "VR18"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[18 * 9 + 2], mPoint[19 * 9 + 2], "VR20"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[20 * 9 + 2], mPoint[19 * 9 + 2], "VR20"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[20 * 9 + 2], mPoint[21 * 9 + 2], "VR22"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[22 * 9 + 2], mPoint[21 * 9 + 2], "VR22"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[22 * 9 + 2], mPoint[23 * 9 + 2], "VR23"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[24 * 9 + 2], mPoint[23 * 9 + 2], "VR23"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[24 * 9 + 2], mPoint[25 * 9 + 2], "VR24"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[26 * 9 + 2], mPoint[25 * 9 + 2], "VR24"));
+            addMuscle(new Muscle(mPoint[0 * 9 + 2], mPoint[1 * 9 + 2], "VR02"));
+            addMuscle(new Muscle(mPoint[2 * 9 + 2], mPoint[1 * 9 + 2], "VR02"));
+            addMuscle(new Muscle(mPoint[2 * 9 + 2], mPoint[3 * 9 + 2], "VR04"));
+            addMuscle(new Muscle(mPoint[4 * 9 + 2], mPoint[3 * 9 + 2], "VR04"));
+            addMuscle(new Muscle(mPoint[4 * 9 + 2], mPoint[5 * 9 + 2], "VR06"));
+            addMuscle(new Muscle(mPoint[6 * 9 + 2], mPoint[5 * 9 + 2], "VR06"));
+            addMuscle(new Muscle(mPoint[6 * 9 + 2], mPoint[7 * 9 + 2], "VR08"));
+            addMuscle(new Muscle(mPoint[8 * 9 + 2], mPoint[7 * 9 + 2], "VR08"));
+            addMuscle(new Muscle(mPoint[8 * 9 + 2], mPoint[9 * 9 + 2], "VR10"));
+            addMuscle(new Muscle(mPoint[10 * 9 + 2], mPoint[9 * 9 + 2], "VR10"));
+            addMuscle(new Muscle(mPoint[10 * 9 + 2], mPoint[11 * 9 + 2], "VR12"));
+            addMuscle(new Muscle(mPoint[12 * 9 + 2], mPoint[11 * 9 + 2], "VR12"));
+            addMuscle(new Muscle(mPoint[12 * 9 + 2], mPoint[13 * 9 + 2], "VR14"));
+            addMuscle(new Muscle(mPoint[14 * 9 + 2], mPoint[13 * 9 + 2], "VR14"));
+            addMuscle(new Muscle(mPoint[14 * 9 + 2], mPoint[15 * 9 + 2], "VR16"));
+            addMuscle(new Muscle(mPoint[16 * 9 + 2], mPoint[15 * 9 + 2], "VR16"));
+            addMuscle(new Muscle(mPoint[16 * 9 + 2], mPoint[17 * 9 + 2], "VR18"));
+            addMuscle(new Muscle(mPoint[18 * 9 + 2], mPoint[17 * 9 + 2], "VR18"));
+            addMuscle(new Muscle(mPoint[18 * 9 + 2], mPoint[19 * 9 + 2], "VR20"));
+            addMuscle(new Muscle(mPoint[20 * 9 + 2], mPoint[19 * 9 + 2], "VR20"));
+            addMuscle(new Muscle(mPoint[20 * 9 + 2], mPoint[21 * 9 + 2], "VR22"));
+            addMuscle(new Muscle(mPoint[22 * 9 + 2], mPoint[21 * 9 + 2], "VR22"));
+            addMuscle(new Muscle(mPoint[22 * 9 + 2], mPoint[23 * 9 + 2], "VR23"));
+            addMuscle(new Muscle(mPoint[24 * 9 + 2], mPoint[23 * 9 + 2], "VR23"));
+            addMuscle(new Muscle(mPoint[24 * 9 + 2], mPoint[25 * 9 + 2], "VR24"));
+            addMuscle(new Muscle(mPoint[26 * 9 + 2], mPoint[25 * 9 + 2], "VR24"));
                                  
-            addMuscle(new Muscle(Physics.MStrength, mPoint[1 * 9 + 3], mPoint[2 * 9 + 3], "VR01"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[3 * 9 + 3], mPoint[2 * 9 + 3], "VR01"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[3 * 9 + 3], mPoint[4 * 9 + 3], "VR03"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[5 * 9 + 3], mPoint[4 * 9 + 3], "VR03"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[5 * 9 + 3], mPoint[6 * 9 + 3], "VR05"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[7 * 9 + 3], mPoint[6 * 9 + 3], "VR05"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[7 * 9 + 3], mPoint[8 * 9 + 3], "VR07"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[9 * 9 + 3], mPoint[8 * 9 + 3], "VR07"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[9 * 9 + 3], mPoint[10 * 9 + 3], "VR09"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[11 * 9 + 3], mPoint[10 * 9 + 3], "VR09"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[11 * 9 + 3], mPoint[12 * 9 + 3], "VR11"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[13 * 9 + 3], mPoint[12 * 9 + 3], "VR11"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[13 * 9 + 3], mPoint[14 * 9 + 3], "VR13"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[15 * 9 + 3], mPoint[14 * 9 + 3], "VR13"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[15 * 9 + 3], mPoint[16 * 9 + 3], "VR15"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[17 * 9 + 3], mPoint[16 * 9 + 3], "VR15"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[17 * 9 + 3], mPoint[18 * 9 + 3], "VR17"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[19 * 9 + 3], mPoint[18 * 9 + 3], "VR17"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[19 * 9 + 3], mPoint[20 * 9 + 3], "VR19"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[21 * 9 + 3], mPoint[20 * 9 + 3], "VR19"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[21 * 9 + 3], mPoint[22 * 9 + 3], "VR21"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[23 * 9 + 3], mPoint[22 * 9 + 3], "VR21"));
+            addMuscle(new Muscle(mPoint[1 * 9 + 3], mPoint[2 * 9 + 3], "VR01"));
+            addMuscle(new Muscle(mPoint[3 * 9 + 3], mPoint[2 * 9 + 3], "VR01"));
+            addMuscle(new Muscle(mPoint[3 * 9 + 3], mPoint[4 * 9 + 3], "VR03"));
+            addMuscle(new Muscle(mPoint[5 * 9 + 3], mPoint[4 * 9 + 3], "VR03"));
+            addMuscle(new Muscle(mPoint[5 * 9 + 3], mPoint[6 * 9 + 3], "VR05"));
+            addMuscle(new Muscle(mPoint[7 * 9 + 3], mPoint[6 * 9 + 3], "VR05"));
+            addMuscle(new Muscle(mPoint[7 * 9 + 3], mPoint[8 * 9 + 3], "VR07"));
+            addMuscle(new Muscle(mPoint[9 * 9 + 3], mPoint[8 * 9 + 3], "VR07"));
+            addMuscle(new Muscle(mPoint[9 * 9 + 3], mPoint[10 * 9 + 3], "VR09"));
+            addMuscle(new Muscle(mPoint[11 * 9 + 3], mPoint[10 * 9 + 3], "VR09"));
+            addMuscle(new Muscle(mPoint[11 * 9 + 3], mPoint[12 * 9 + 3], "VR11"));
+            addMuscle(new Muscle(mPoint[13 * 9 + 3], mPoint[12 * 9 + 3], "VR11"));
+            addMuscle(new Muscle(mPoint[13 * 9 + 3], mPoint[14 * 9 + 3], "VR13"));
+            addMuscle(new Muscle(mPoint[15 * 9 + 3], mPoint[14 * 9 + 3], "VR13"));
+            addMuscle(new Muscle(mPoint[15 * 9 + 3], mPoint[16 * 9 + 3], "VR15"));
+            addMuscle(new Muscle(mPoint[17 * 9 + 3], mPoint[16 * 9 + 3], "VR15"));
+            addMuscle(new Muscle(mPoint[17 * 9 + 3], mPoint[18 * 9 + 3], "VR17"));
+            addMuscle(new Muscle(mPoint[19 * 9 + 3], mPoint[18 * 9 + 3], "VR17"));
+            addMuscle(new Muscle(mPoint[19 * 9 + 3], mPoint[20 * 9 + 3], "VR19"));
+            addMuscle(new Muscle(mPoint[21 * 9 + 3], mPoint[20 * 9 + 3], "VR19"));
+            addMuscle(new Muscle(mPoint[21 * 9 + 3], mPoint[22 * 9 + 3], "VR21"));
+            addMuscle(new Muscle(mPoint[23 * 9 + 3], mPoint[22 * 9 + 3], "VR21"));
                                  
-            addMuscle(new Muscle(Physics.MStrength, mPoint[1 * 9 + 4], mPoint[2 * 9 + 4], "DR01"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[3 * 9 + 4], mPoint[2 * 9 + 4], "DR01"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[3 * 9 + 4], mPoint[4 * 9 + 4], "DR03"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[5 * 9 + 4], mPoint[4 * 9 + 4], "DR03"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[5 * 9 + 4], mPoint[6 * 9 + 4], "DR05"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[7 * 9 + 4], mPoint[6 * 9 + 4], "DR05"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[7 * 9 + 4], mPoint[8 * 9 + 4], "DR07"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[9 * 9 + 4], mPoint[8 * 9 + 4], "DR07"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[9 * 9 + 4], mPoint[10 * 9 + 4], "DR09"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[11 * 9 + 4], mPoint[10 * 9 + 4], "DR09"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[11 * 9 + 4], mPoint[12 * 9 + 4], "DR11"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[13 * 9 + 4], mPoint[12 * 9 + 4], "DR11"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[13 * 9 + 4], mPoint[14 * 9 + 4], "DR13"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[15 * 9 + 4], mPoint[14 * 9 + 4], "DR13"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[15 * 9 + 4], mPoint[16 * 9 + 4], "DR15"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[17 * 9 + 4], mPoint[16 * 9 + 4], "DR15"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[17 * 9 + 4], mPoint[18 * 9 + 4], "DR17"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[19 * 9 + 4], mPoint[18 * 9 + 4], "DR17"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[19 * 9 + 4], mPoint[20 * 9 + 4], "DR19"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[21 * 9 + 4], mPoint[20 * 9 + 4], "DR19"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[21 * 9 + 4], mPoint[22 * 9 + 4], "DR21"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[23 * 9 + 4], mPoint[22 * 9 + 4], "DR21"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[23 * 9 + 4], mPoint[24 * 9 + 4], "DR23"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[25 * 9 + 4], mPoint[24 * 9 + 4], "DR23"));
+            addMuscle(new Muscle(mPoint[1 * 9 + 4], mPoint[2 * 9 + 4], "DR01"));
+            addMuscle(new Muscle(mPoint[3 * 9 + 4], mPoint[2 * 9 + 4], "DR01"));
+            addMuscle(new Muscle(mPoint[3 * 9 + 4], mPoint[4 * 9 + 4], "DR03"));
+            addMuscle(new Muscle(mPoint[5 * 9 + 4], mPoint[4 * 9 + 4], "DR03"));
+            addMuscle(new Muscle(mPoint[5 * 9 + 4], mPoint[6 * 9 + 4], "DR05"));
+            addMuscle(new Muscle(mPoint[7 * 9 + 4], mPoint[6 * 9 + 4], "DR05"));
+            addMuscle(new Muscle(mPoint[7 * 9 + 4], mPoint[8 * 9 + 4], "DR07"));
+            addMuscle(new Muscle(mPoint[9 * 9 + 4], mPoint[8 * 9 + 4], "DR07"));
+            addMuscle(new Muscle(mPoint[9 * 9 + 4], mPoint[10 * 9 + 4], "DR09"));
+            addMuscle(new Muscle(mPoint[11 * 9 + 4], mPoint[10 * 9 + 4], "DR09"));
+            addMuscle(new Muscle(mPoint[11 * 9 + 4], mPoint[12 * 9 + 4], "DR11"));
+            addMuscle(new Muscle(mPoint[13 * 9 + 4], mPoint[12 * 9 + 4], "DR11"));
+            addMuscle(new Muscle(mPoint[13 * 9 + 4], mPoint[14 * 9 + 4], "DR13"));
+            addMuscle(new Muscle(mPoint[15 * 9 + 4], mPoint[14 * 9 + 4], "DR13"));
+            addMuscle(new Muscle(mPoint[15 * 9 + 4], mPoint[16 * 9 + 4], "DR15"));
+            addMuscle(new Muscle(mPoint[17 * 9 + 4], mPoint[16 * 9 + 4], "DR15"));
+            addMuscle(new Muscle(mPoint[17 * 9 + 4], mPoint[18 * 9 + 4], "DR17"));
+            addMuscle(new Muscle(mPoint[19 * 9 + 4], mPoint[18 * 9 + 4], "DR17"));
+            addMuscle(new Muscle(mPoint[19 * 9 + 4], mPoint[20 * 9 + 4], "DR19"));
+            addMuscle(new Muscle(mPoint[21 * 9 + 4], mPoint[20 * 9 + 4], "DR19"));
+            addMuscle(new Muscle(mPoint[21 * 9 + 4], mPoint[22 * 9 + 4], "DR21"));
+            addMuscle(new Muscle(mPoint[23 * 9 + 4], mPoint[22 * 9 + 4], "DR21"));
+            addMuscle(new Muscle(mPoint[23 * 9 + 4], mPoint[24 * 9 + 4], "DR23"));
+            addMuscle(new Muscle(mPoint[25 * 9 + 4], mPoint[24 * 9 + 4], "DR23"));
                                  
-            addMuscle(new Muscle(Physics.MStrength, mPoint[0 * 9 + 5], mPoint[1 * 9 + 5], "DR02"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[2 * 9 + 5], mPoint[1 * 9 + 5], "DR02"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[2 * 9 + 5], mPoint[3 * 9 + 5], "DR04"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[4 * 9 + 5], mPoint[3 * 9 + 5], "DR04"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[4 * 9 + 5], mPoint[5 * 9 + 5], "DR06"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[6 * 9 + 5], mPoint[5 * 9 + 5], "DR06"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[6 * 9 + 5], mPoint[7 * 9 + 5], "DR08"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[8 * 9 + 5], mPoint[7 * 9 + 5], "DR08"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[8 * 9 + 5], mPoint[9 * 9 + 5], "DR10"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[10 * 9 + 5], mPoint[9 * 9 + 5], "DR10"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[10 * 9 + 5], mPoint[11 * 9 + 5], "DR12"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[12 * 9 + 5], mPoint[11 * 9 + 5], "DR12"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[12 * 9 + 5], mPoint[13 * 9 + 5], "DR14"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[14 * 9 + 5], mPoint[13 * 9 + 5], "DR14"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[14 * 9 + 5], mPoint[15 * 9 + 5], "DR16"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[16 * 9 + 5], mPoint[15 * 9 + 5], "DR16"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[16 * 9 + 5], mPoint[17 * 9 + 5], "DR18"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[18 * 9 + 5], mPoint[17 * 9 + 5], "DR18"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[18 * 9 + 5], mPoint[19 * 9 + 5], "DR20"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[20 * 9 + 5], mPoint[19 * 9 + 5], "DR20"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[20 * 9 + 5], mPoint[21 * 9 + 5], "DR22"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[22 * 9 + 5], mPoint[21 * 9 + 5], "DR22"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[22 * 9 + 5], mPoint[23 * 9 + 5], "DR24"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[24 * 9 + 5], mPoint[23 * 9 + 5], "DR24"));
+            addMuscle(new Muscle(mPoint[0 * 9 + 5], mPoint[1 * 9 + 5], "DR02"));
+            addMuscle(new Muscle(mPoint[2 * 9 + 5], mPoint[1 * 9 + 5], "DR02"));
+            addMuscle(new Muscle(mPoint[2 * 9 + 5], mPoint[3 * 9 + 5], "DR04"));
+            addMuscle(new Muscle(mPoint[4 * 9 + 5], mPoint[3 * 9 + 5], "DR04"));
+            addMuscle(new Muscle(mPoint[4 * 9 + 5], mPoint[5 * 9 + 5], "DR06"));
+            addMuscle(new Muscle(mPoint[6 * 9 + 5], mPoint[5 * 9 + 5], "DR06"));
+            addMuscle(new Muscle(mPoint[6 * 9 + 5], mPoint[7 * 9 + 5], "DR08"));
+            addMuscle(new Muscle(mPoint[8 * 9 + 5], mPoint[7 * 9 + 5], "DR08"));
+            addMuscle(new Muscle(mPoint[8 * 9 + 5], mPoint[9 * 9 + 5], "DR10"));
+            addMuscle(new Muscle(mPoint[10 * 9 + 5], mPoint[9 * 9 + 5], "DR10"));
+            addMuscle(new Muscle(mPoint[10 * 9 + 5], mPoint[11 * 9 + 5], "DR12"));
+            addMuscle(new Muscle(mPoint[12 * 9 + 5], mPoint[11 * 9 + 5], "DR12"));
+            addMuscle(new Muscle(mPoint[12 * 9 + 5], mPoint[13 * 9 + 5], "DR14"));
+            addMuscle(new Muscle(mPoint[14 * 9 + 5], mPoint[13 * 9 + 5], "DR14"));
+            addMuscle(new Muscle(mPoint[14 * 9 + 5], mPoint[15 * 9 + 5], "DR16"));
+            addMuscle(new Muscle(mPoint[16 * 9 + 5], mPoint[15 * 9 + 5], "DR16"));
+            addMuscle(new Muscle(mPoint[16 * 9 + 5], mPoint[17 * 9 + 5], "DR18"));
+            addMuscle(new Muscle(mPoint[18 * 9 + 5], mPoint[17 * 9 + 5], "DR18"));
+            addMuscle(new Muscle(mPoint[18 * 9 + 5], mPoint[19 * 9 + 5], "DR20"));
+            addMuscle(new Muscle(mPoint[20 * 9 + 5], mPoint[19 * 9 + 5], "DR20"));
+            addMuscle(new Muscle(mPoint[20 * 9 + 5], mPoint[21 * 9 + 5], "DR22"));
+            addMuscle(new Muscle(mPoint[22 * 9 + 5], mPoint[21 * 9 + 5], "DR22"));
+            addMuscle(new Muscle(mPoint[22 * 9 + 5], mPoint[23 * 9 + 5], "DR24"));
+            addMuscle(new Muscle(mPoint[24 * 9 + 5], mPoint[23 * 9 + 5], "DR24"));
                                  
-            addMuscle(new Muscle(Physics.MStrength, mPoint[0 * 9 + 6], mPoint[1 * 9 + 6], "DL02"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[2 * 9 + 6], mPoint[1 * 9 + 6], "DL02"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[2 * 9 + 6], mPoint[3 * 9 + 6], "DL04"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[4 * 9 + 6], mPoint[3 * 9 + 6], "DL04"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[4 * 9 + 6], mPoint[5 * 9 + 6], "DL06"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[6 * 9 + 6], mPoint[5 * 9 + 6], "DL06"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[6 * 9 + 6], mPoint[7 * 9 + 6], "DL08"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[8 * 9 + 6], mPoint[7 * 9 + 6], "DL08"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[8 * 9 + 6], mPoint[9 * 9 + 6], "DL10"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[10 * 9 + 6], mPoint[9 * 9 + 6], "DL10"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[10 * 9 + 6], mPoint[11 * 9 + 6], "DL12"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[12 * 9 + 6], mPoint[11 * 9 + 6], "DL12"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[12 * 9 + 6], mPoint[13 * 9 + 6], "DL14"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[14 * 9 + 6], mPoint[13 * 9 + 6], "DL14"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[14 * 9 + 6], mPoint[15 * 9 + 6], "DL16"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[16 * 9 + 6], mPoint[15 * 9 + 6], "DL16"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[16 * 9 + 6], mPoint[17 * 9 + 6], "DL18"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[18 * 9 + 6], mPoint[17 * 9 + 6], "DL18"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[18 * 9 + 6], mPoint[19 * 9 + 6], "DL20"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[20 * 9 + 6], mPoint[19 * 9 + 6], "DL20"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[20 * 9 + 6], mPoint[21 * 9 + 6], "DL22"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[22 * 9 + 6], mPoint[21 * 9 + 6], "DL22"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[22 * 9 + 6], mPoint[23 * 9 + 6], "DL24"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[24 * 9 + 6], mPoint[23 * 9 + 6], "DL24"));
+            addMuscle(new Muscle(mPoint[0 * 9 + 6], mPoint[1 * 9 + 6], "DL02"));
+            addMuscle(new Muscle(mPoint[2 * 9 + 6], mPoint[1 * 9 + 6], "DL02"));
+            addMuscle(new Muscle(mPoint[2 * 9 + 6], mPoint[3 * 9 + 6], "DL04"));
+            addMuscle(new Muscle(mPoint[4 * 9 + 6], mPoint[3 * 9 + 6], "DL04"));
+            addMuscle(new Muscle(mPoint[4 * 9 + 6], mPoint[5 * 9 + 6], "DL06"));
+            addMuscle(new Muscle(mPoint[6 * 9 + 6], mPoint[5 * 9 + 6], "DL06"));
+            addMuscle(new Muscle(mPoint[6 * 9 + 6], mPoint[7 * 9 + 6], "DL08"));
+            addMuscle(new Muscle(mPoint[8 * 9 + 6], mPoint[7 * 9 + 6], "DL08"));
+            addMuscle(new Muscle(mPoint[8 * 9 + 6], mPoint[9 * 9 + 6], "DL10"));
+            addMuscle(new Muscle(mPoint[10 * 9 + 6], mPoint[9 * 9 + 6], "DL10"));
+            addMuscle(new Muscle(mPoint[10 * 9 + 6], mPoint[11 * 9 + 6], "DL12"));
+            addMuscle(new Muscle(mPoint[12 * 9 + 6], mPoint[11 * 9 + 6], "DL12"));
+            addMuscle(new Muscle(mPoint[12 * 9 + 6], mPoint[13 * 9 + 6], "DL14"));
+            addMuscle(new Muscle(mPoint[14 * 9 + 6], mPoint[13 * 9 + 6], "DL14"));
+            addMuscle(new Muscle(mPoint[14 * 9 + 6], mPoint[15 * 9 + 6], "DL16"));
+            addMuscle(new Muscle(mPoint[16 * 9 + 6], mPoint[15 * 9 + 6], "DL16"));
+            addMuscle(new Muscle(mPoint[16 * 9 + 6], mPoint[17 * 9 + 6], "DL18"));
+            addMuscle(new Muscle(mPoint[18 * 9 + 6], mPoint[17 * 9 + 6], "DL18"));
+            addMuscle(new Muscle(mPoint[18 * 9 + 6], mPoint[19 * 9 + 6], "DL20"));
+            addMuscle(new Muscle(mPoint[20 * 9 + 6], mPoint[19 * 9 + 6], "DL20"));
+            addMuscle(new Muscle(mPoint[20 * 9 + 6], mPoint[21 * 9 + 6], "DL22"));
+            addMuscle(new Muscle(mPoint[22 * 9 + 6], mPoint[21 * 9 + 6], "DL22"));
+            addMuscle(new Muscle(mPoint[22 * 9 + 6], mPoint[23 * 9 + 6], "DL24"));
+            addMuscle(new Muscle(mPoint[24 * 9 + 6], mPoint[23 * 9 + 6], "DL24"));
                                  
-            addMuscle(new Muscle(Physics.MStrength, mPoint[1 * 9 + 7], mPoint[2 * 9 + 7], "DL01"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[3 * 9 + 7], mPoint[2 * 9 + 7], "DL01"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[3 * 9 + 7], mPoint[4 * 9 + 7], "DL03"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[5 * 9 + 7], mPoint[4 * 9 + 7], "DL03"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[5 * 9 + 7], mPoint[6 * 9 + 7], "DL05"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[7 * 9 + 7], mPoint[6 * 9 + 7], "DL05"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[7 * 9 + 7], mPoint[8 * 9 + 7], "DL07"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[9 * 9 + 7], mPoint[8 * 9 + 7], "DL07"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[9 * 9 + 7], mPoint[10 * 9 + 7], "DL09"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[11 * 9 + 7], mPoint[10 * 9 + 7], "DL09"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[11 * 9 + 7], mPoint[12 * 9 + 7], "DL11"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[13 * 9 + 7], mPoint[12 * 9 + 7], "DL11"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[13 * 9 + 7], mPoint[14 * 9 + 7], "DL13"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[15 * 9 + 7], mPoint[14 * 9 + 7], "DL13"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[15 * 9 + 7], mPoint[16 * 9 + 7], "DL15"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[17 * 9 + 7], mPoint[16 * 9 + 7], "DL15"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[17 * 9 + 7], mPoint[18 * 9 + 7], "DL17"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[19 * 9 + 7], mPoint[18 * 9 + 7], "DL17"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[19 * 9 + 7], mPoint[20 * 9 + 7], "DL19"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[21 * 9 + 7], mPoint[20 * 9 + 7], "DL19"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[21 * 9 + 7], mPoint[22 * 9 + 7], "DL21"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[23 * 9 + 7], mPoint[22 * 9 + 7], "DL21"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[23 * 9 + 7], mPoint[24 * 9 + 7], "DL23"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[25 * 9 + 7], mPoint[24 * 9 + 7], "DL23"));
+            addMuscle(new Muscle(mPoint[1 * 9 + 7], mPoint[2 * 9 + 7], "DL01"));
+            addMuscle(new Muscle(mPoint[3 * 9 + 7], mPoint[2 * 9 + 7], "DL01"));
+            addMuscle(new Muscle(mPoint[3 * 9 + 7], mPoint[4 * 9 + 7], "DL03"));
+            addMuscle(new Muscle(mPoint[5 * 9 + 7], mPoint[4 * 9 + 7], "DL03"));
+            addMuscle(new Muscle(mPoint[5 * 9 + 7], mPoint[6 * 9 + 7], "DL05"));
+            addMuscle(new Muscle(mPoint[7 * 9 + 7], mPoint[6 * 9 + 7], "DL05"));
+            addMuscle(new Muscle(mPoint[7 * 9 + 7], mPoint[8 * 9 + 7], "DL07"));
+            addMuscle(new Muscle(mPoint[9 * 9 + 7], mPoint[8 * 9 + 7], "DL07"));
+            addMuscle(new Muscle(mPoint[9 * 9 + 7], mPoint[10 * 9 + 7], "DL09"));
+            addMuscle(new Muscle(mPoint[11 * 9 + 7], mPoint[10 * 9 + 7], "DL09"));
+            addMuscle(new Muscle(mPoint[11 * 9 + 7], mPoint[12 * 9 + 7], "DL11"));
+            addMuscle(new Muscle(mPoint[13 * 9 + 7], mPoint[12 * 9 + 7], "DL11"));
+            addMuscle(new Muscle(mPoint[13 * 9 + 7], mPoint[14 * 9 + 7], "DL13"));
+            addMuscle(new Muscle(mPoint[15 * 9 + 7], mPoint[14 * 9 + 7], "DL13"));
+            addMuscle(new Muscle(mPoint[15 * 9 + 7], mPoint[16 * 9 + 7], "DL15"));
+            addMuscle(new Muscle(mPoint[17 * 9 + 7], mPoint[16 * 9 + 7], "DL15"));
+            addMuscle(new Muscle(mPoint[17 * 9 + 7], mPoint[18 * 9 + 7], "DL17"));
+            addMuscle(new Muscle(mPoint[19 * 9 + 7], mPoint[18 * 9 + 7], "DL17"));
+            addMuscle(new Muscle(mPoint[19 * 9 + 7], mPoint[20 * 9 + 7], "DL19"));
+            addMuscle(new Muscle(mPoint[21 * 9 + 7], mPoint[20 * 9 + 7], "DL19"));
+            addMuscle(new Muscle(mPoint[21 * 9 + 7], mPoint[22 * 9 + 7], "DL21"));
+            addMuscle(new Muscle(mPoint[23 * 9 + 7], mPoint[22 * 9 + 7], "DL21"));
+            addMuscle(new Muscle(mPoint[23 * 9 + 7], mPoint[24 * 9 + 7], "DL23"));
+            addMuscle(new Muscle(mPoint[25 * 9 + 7], mPoint[24 * 9 + 7], "DL23"));
                                  
-            addMuscle(new Muscle(Physics.MStrength, mPoint[1 * 9 + 8], mPoint[2 * 9 + 8], "VL01"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[3 * 9 + 8], mPoint[2 * 9 + 8], "VL01"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[3 * 9 + 8], mPoint[4 * 9 + 8], "VL03"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[5 * 9 + 8], mPoint[4 * 9 + 8], "VL03"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[5 * 9 + 8], mPoint[6 * 9 + 8], "VL05"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[7 * 9 + 8], mPoint[6 * 9 + 8], "VL05"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[7 * 9 + 8], mPoint[8 * 9 + 8], "VL07"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[9 * 9 + 8], mPoint[8 * 9 + 8], "VL07"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[9 * 9 + 8], mPoint[10 * 9 + 8], "VL09"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[11 * 9 + 8], mPoint[10 * 9 + 8], "VL09"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[11 * 9 + 8], mPoint[12 * 9 + 8], "VL11"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[13 * 9 + 8], mPoint[12 * 9 + 8], "VL11"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[13 * 9 + 8], mPoint[14 * 9 + 8], "VL13"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[15 * 9 + 8], mPoint[14 * 9 + 8], "VL13"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[15 * 9 + 8], mPoint[16 * 9 + 8], "VL15"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[17 * 9 + 8], mPoint[16 * 9 + 8], "VL15"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[17 * 9 + 8], mPoint[18 * 9 + 8], "VL17"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[19 * 9 + 8], mPoint[18 * 9 + 8], "VL17"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[19 * 9 + 8], mPoint[20 * 9 + 8], "VL19"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[21 * 9 + 8], mPoint[20 * 9 + 8], "VL19"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[21 * 9 + 8], mPoint[22 * 9 + 8], "VL21"));
-            addMuscle(new Muscle(Physics.MStrength, mPoint[23 * 9 + 8], mPoint[22 * 9 + 8], "VL21"));
+            addMuscle(new Muscle(mPoint[1 * 9 + 8], mPoint[2 * 9 + 8], "VL01"));
+            addMuscle(new Muscle(mPoint[3 * 9 + 8], mPoint[2 * 9 + 8], "VL01"));
+            addMuscle(new Muscle(mPoint[3 * 9 + 8], mPoint[4 * 9 + 8], "VL03"));
+            addMuscle(new Muscle(mPoint[5 * 9 + 8], mPoint[4 * 9 + 8], "VL03"));
+            addMuscle(new Muscle(mPoint[5 * 9 + 8], mPoint[6 * 9 + 8], "VL05"));
+            addMuscle(new Muscle(mPoint[7 * 9 + 8], mPoint[6 * 9 + 8], "VL05"));
+            addMuscle(new Muscle(mPoint[7 * 9 + 8], mPoint[8 * 9 + 8], "VL07"));
+            addMuscle(new Muscle(mPoint[9 * 9 + 8], mPoint[8 * 9 + 8], "VL07"));
+            addMuscle(new Muscle(mPoint[9 * 9 + 8], mPoint[10 * 9 + 8], "VL09"));
+            addMuscle(new Muscle(mPoint[11 * 9 + 8], mPoint[10 * 9 + 8], "VL09"));
+            addMuscle(new Muscle(mPoint[11 * 9 + 8], mPoint[12 * 9 + 8], "VL11"));
+            addMuscle(new Muscle(mPoint[13 * 9 + 8], mPoint[12 * 9 + 8], "VL11"));
+            addMuscle(new Muscle(mPoint[13 * 9 + 8], mPoint[14 * 9 + 8], "VL13"));
+            addMuscle(new Muscle(mPoint[15 * 9 + 8], mPoint[14 * 9 + 8], "VL13"));
+            addMuscle(new Muscle(mPoint[15 * 9 + 8], mPoint[16 * 9 + 8], "VL15"));
+            addMuscle(new Muscle(mPoint[17 * 9 + 8], mPoint[16 * 9 + 8], "VL15"));
+            addMuscle(new Muscle(mPoint[17 * 9 + 8], mPoint[18 * 9 + 8], "VL17"));
+            addMuscle(new Muscle(mPoint[19 * 9 + 8], mPoint[18 * 9 + 8], "VL17"));
+            addMuscle(new Muscle(mPoint[19 * 9 + 8], mPoint[20 * 9 + 8], "VL19"));
+            addMuscle(new Muscle(mPoint[21 * 9 + 8], mPoint[20 * 9 + 8], "VL19"));
+            addMuscle(new Muscle(mPoint[21 * 9 + 8], mPoint[22 * 9 + 8], "VL21"));
+            addMuscle(new Muscle(mPoint[23 * 9 + 8], mPoint[22 * 9 + 8], "VL21"));
             #endregion
 
             #region Tail
             addMPoint(new MassPoint(0.05f, vshift + new Vector3(-1 * dx - i * dx, 0, 0)));
 
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 0], mPoint[i * 9 + 0]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 1], mPoint[i * 9 + 0]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 2], mPoint[i * 9 + 0]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 3], mPoint[i * 9 + 0]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 4], mPoint[i * 9 + 0]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 5], mPoint[i * 9 + 0]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 6], mPoint[i * 9 + 0]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 7], mPoint[i * 9 + 0]));
-            addSpring(new Spring(Physics.AUTODETECT, Physics.StiffCoeff, Physics.FrictCoeff, mPoint[(i - 1) * 9 + 8], mPoint[i * 9 + 0]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 0], mPoint[i * 9 + 0]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 1], mPoint[i * 9 + 0]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 2], mPoint[i * 9 + 0]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 3], mPoint[i * 9 + 0]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 4], mPoint[i * 9 + 0]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 5], mPoint[i * 9 + 0]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 6], mPoint[i * 9 + 0]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 7], mPoint[i * 9 + 0]));
+            addSpring(new Spring(Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 8], mPoint[i * 9 + 0]));
             #endregion
 
             using (var reader = new StreamReader(new MemoryStream(System.Text.Encoding.UTF8.GetBytes(neurons))))
@@ -620,6 +620,9 @@ namespace Orbitaldrop.Cyberelegans
 
         private void neuronPosCorrection()
         {
+            if (!UniversalConstantsBehaviour.Instance.UpdateNeuronPositions)
+                return;
+
             for(int i = 0; i < nextTable; i++)
             {
                 if (nextTableFor[i] == 0) continue;
@@ -708,14 +711,20 @@ namespace Orbitaldrop.Cyberelegans
 
         public void Draw()
         {
-            for(int n = 0; n < nextNeuron; n++) { neuron[n].Draw(neuronHolder);  }
-            //neuron.ForEach(n => n.Draw(neuronHolder));
+            if (UniversalConstantsBehaviour.Instance.ShowNeurons)
+            {
+                for (int n = 0; n < nextNeuron; n++) { neuron[n].Draw(neuronHolder); }
+            }
 
-            for (int m = 0; m < nextMuscle; m++) { muscle[m].Draw(musclesHolder); }
-            //muscle.ForEach(m => m.Draw(musclesHolder));
+            if (UniversalConstantsBehaviour.Instance.ShowMuscles)
+            {
+                for (int m = 0; m < nextMuscle; m++) { muscle[m].Draw(musclesHolder); }
+            }
 
-            for (int mp = 0; mp < nextMassPoint; mp++) { mPoint[mp].Draw(masspointHolder); }
-            //mPoint.ForEach(mp => mp.Draw(masspointHolder));
+            if (UniversalConstantsBehaviour.Instance.ShowMassPoints)
+            {
+                for (int mp = 0; mp < nextMassPoint; mp++) { mPoint[mp].Draw(masspointHolder); }
+            }
 
             if (UniversalConstantsBehaviour.Instance.ShowSprings)
             {

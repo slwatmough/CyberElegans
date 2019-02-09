@@ -6,10 +6,12 @@ namespace Orbitaldrop.Cyberelegans
     public class Spring : Connector
     {
         public float length { get; set; }
-        public float stiffnessCoefficient { get; set; }
-        public float frictionCoefficient { get; set; }
+        public float stiffnessScaler { get; set; }
+        public float frictionScalar { get; set; }
 
-        public Spring(float length, float stiffnessCoefficient, float frictionCoefficient, MassPoint p1, MassPoint p2) : base(p1, p2)
+        private readonly float originalSpringLength;
+
+        public Spring(float length, float stiffnessScaler, float frictionScalar, MassPoint p1, MassPoint p2) : base(p1, p2)
         {
             this.length = length;
 
@@ -18,8 +20,10 @@ namespace Orbitaldrop.Cyberelegans
                 this.length = (p1.pos - p2.pos).magnitude * Mathf.Abs(this.length);
             }
 
-            this.stiffnessCoefficient = stiffnessCoefficient;
-            this.frictionCoefficient = frictionCoefficient;
+            this.stiffnessScaler = stiffnessScaler;
+            this.frictionScalar = frictionScalar;
+
+            this.originalSpringLength = (P1.pos - P2.pos).magnitude;
         }
 
         public void Update()
@@ -29,7 +33,7 @@ namespace Orbitaldrop.Cyberelegans
                 var springVector = P1.pos - P2.pos;
                 var r = springVector.magnitude;
 
-                if (r < 0.05f || r >= 3)
+                if (r < 0.05f || r >= originalSpringLength * 1.2f)
                 {
                     status = 0;
                     return;
@@ -38,10 +42,10 @@ namespace Orbitaldrop.Cyberelegans
                 Vector3 force = Vector3.zero;
                 if (r != 0.0f)
                 {
-                    force = (springVector / r) * (r - length) * -stiffnessCoefficient;
+                    force = (springVector / r) * (r - length) * - (stiffnessScaler * UniversalConstantsBehaviour.Instance.StiffCoeff);
                 }
 
-                force += -(P1.vel - P2.vel) * frictionCoefficient;
+                force += -(P1.vel - P2.vel) * (frictionScalar * UniversalConstantsBehaviour.Instance.FrictCoeff);
 
                 P1.ApplyForce(force);
                 P2.ApplyForce(-force);
@@ -50,13 +54,7 @@ namespace Orbitaldrop.Cyberelegans
 
         public void Draw(GameObject springHolder)
         {
-            var c = Color.red;
-            if (status != 0)
-            {
-                c = new Color(0.29f, 0.29f, 0.29f);
-            }
-
-            Debug.DrawLine(P1.pos, P2.pos, c);
+            Debug.DrawLine(P1.pos, P2.pos, (status == 0 ? Color.red : Color.gray));
         }
     }
 }

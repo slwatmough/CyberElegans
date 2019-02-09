@@ -16,25 +16,25 @@ namespace Orbitaldrop.Cyberelegans
 
         public void ApplyForce(Vector3 force)
         {
-            force += force;
+            this.force += force;
         }
 
         public void Update()
         {
-            ApplyForce(new Vector3(0.0f, 0.0f, Physics.Gravity * mass));
+            ApplyForce(new Vector3(0.0f, Physics.Gravity * mass, 0.0f));
 
             if (pos.z <= Physics.GroundHeight)
             {
-                var v = new Vector3(vel.x, vel.y, 0.0f);
+                var v = new Vector3(vel.x, 0.0f, vel.z);
 
-                if (vel.z < 0.0f)
+                if (vel.y < 0.0f)
                 {
                     v = vel;
                     v.x = 0;
-                    v.y = 0;
+                    v.z = 0;
                     
-                    ApplyForce(-v * Physics.GroundAbsorptionConstant);
-                    ApplyForce(new Vector3(0.0f, 0.0f, Physics.GroundRepulsionConstant) * (Physics.GroundHeight - pos.z));
+                    ApplyForce(-v * UniversalConstantsBehaviour.Instance.GroundAbsorptionConstant);
+                    ApplyForce(new Vector3(0.0f, UniversalConstantsBehaviour.Instance.GroundRepulsionConstant, 0.0f) * (Physics.GroundHeight - pos.z));
                 }
             }
 
@@ -58,11 +58,11 @@ namespace Orbitaldrop.Cyberelegans
                 {
                     v = -pos;
                     v.z = 0;
-                    ApplyForce(v * Physics.GroundRepulsionConstant * (r - 10.0f));
+                    ApplyForce(v * UniversalConstantsBehaviour.Instance.GroundRepulsionConstant * (r - 10.0f));
                 }
             }
 
-            ApplyForce(-vel * Physics.AirFrictionCoefficient);
+            ApplyForce(-vel * UniversalConstantsBehaviour.Instance.AirFrictionCoefficient);
         }
 
         public void timeTick(float dt)

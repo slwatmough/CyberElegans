@@ -292,12 +292,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa62426495d10a4a941ea18406af93a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowMassPoints: 1
+  ShowMuscles: 1
+  ShowSprings: 1
+  SpringSnapPoint: 1.2
+  StiffCoeff: 80
+  FrictCoeff: 0.6
   SynapseSignalGainPerSecond: 11
   SynapseSignalDegredationPerSecond: 5
-  ShowSprings: 0
-  ShowAxons: 1
+  ShowNeurons: 1
+  ShowUnconnectedNeurons: 0
+  ShowAxons: 0
   ShowMuscleAxons: 1
-  HideUnconnectedNeurons: 0
+  UpdateNeuronPositions: 0
+  AirFrictionCoefficient: 0.002
+  GroundAbsorptionConstant: 2
+  GroundRepulsionConstant: 100
+  GroundFrictionConstant: 0.6
 --- !u!4 &1290980129
 Transform:
   m_ObjectHideFlags: 0
