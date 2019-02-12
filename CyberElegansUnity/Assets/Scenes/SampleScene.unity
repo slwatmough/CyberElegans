@@ -293,18 +293,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowMassPoints: 1
-  ShowMuscles: 0
-  ShowSprings: 1
-  SpringSnapPoint: 1.2
-  StiffCoeff: 0
-  FrictCoeff: 0
-  SynapseSignalGainPerSecond: 11
+  ShowMuscles: 1
+  ShowSprings: 0
+  SpringSnapPoint: 1.5
+  StiffCoeff: 60
+  FrictCoeff: 0.1
+  SynapseSignalGainPerSecond: 9
   SynapseSignalDegredationPerSecond: 5
-  ShowNeurons: 0
-  ShowUnconnectedNeurons: 0
-  ShowAxons: 0
+  ShowNeurons: 1
+  ShowUnconnectedNeurons: 1
+  ShowAxons: 1
   ShowMuscleAxons: 1
   UpdateNeuronPositions: 0
+  EnablePhysics: 0
   AirFrictionCoefficient: 3
   GroundAbsorptionConstant: 10
   GroundRepulsionConstant: 10
@@ -454,7 +455,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1694340788}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

@@ -74,15 +74,15 @@ namespace Orbitaldrop.Cyberelegans
             #region Head
             addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-0.7f * dx, 0f, 0f)));
 
-            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, -0.35f * dl * wp[0], -dl * wp[0] / 2f)));
-            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, 0.35f * dl * wp[0], -dl * wp[0] / 2f)));
-            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, dl * wp[0] / 2f, -0.35f * dl * wp[0])));
-            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, dl * wp[0] / 2f, 0.35f * dl * wp[0])));
-
-            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, 0.35f * dl * wp[0], dl * wp[0] / 2)));
-            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, -0.35f * dl * wp[0], dl * wp[0] / 2)));
-            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, -dl * wp[0] / 2f, 0.35f * dl * wp[0])));
             addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, -dl * wp[0] / 2f, -0.35f * dl * wp[0])));
+            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, -dl * wp[0] / 2f, 0.35f * dl * wp[0])));
+            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, -0.35f * dl * wp[0], dl * wp[0] / 2f)));
+            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, 0.35f * dl * wp[0], dl * wp[0] / 2f)));
+
+            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, dl * wp[0] / 2, 0.35f * dl * wp[0])));
+            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, dl * wp[0] / 2, -0.35f * dl * wp[0])));
+            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, 0.35f * dl * wp[0], - dl * wp[0] / 2f)));
+            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, -0.35f * dl * wp[0], - dl * wp[0] / 2f)));
 
             addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[0], mPoint[1]));
             addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[0], mPoint[2]));
@@ -121,15 +121,15 @@ namespace Orbitaldrop.Cyberelegans
             {
                 addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.0f+i)*dx, 0f		, 0f )) );
                 
-                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx, -0.35f*dl*wp[i], -0.50f*dl*wp[i] )) );
-                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx,  0.35f*dl*wp[i], -0.50f*dl*wp[i] )) );	
-                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx,  0.50f*dl*wp[i], -0.35f*dl*wp[i] )) );
-                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx,  0.50f*dl*wp[i],  0.35f*dl*wp[i] )) );
-
-                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx,  0.35f*dl*wp[i],  0.50f*dl*wp[i] )) );
-                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx, -0.35f*dl*wp[i],  0.50f*dl*wp[i] )) );	
-                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx, -0.50f*dl*wp[i],  0.35f*dl*wp[i] )) );
                 addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx, -0.50f*dl*wp[i], -0.35f*dl*wp[i] )) );
+                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx, -0.50f*dl*wp[i],  0.35f*dl*wp[i] )) );	
+                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx, -0.35f*dl*wp[i],  0.50f*dl*wp[i] )) );
+                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx,  0.35f*dl*wp[i],  0.50f*dl*wp[i] )) );
+                                                                                                                 
+                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx,  0.50f*dl*wp[i],  0.35f*dl*wp[i] )) );
+                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx,  0.50f*dl*wp[i], -0.35f*dl*wp[i] )) );	
+                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx,  0.35f*dl*wp[i], -0.50f*dl*wp[i] )) );
+                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx, -0.35f*dl*wp[i], -0.50f*dl*wp[i] )) );
 
                 //============
 
@@ -417,6 +417,9 @@ namespace Orbitaldrop.Cyberelegans
                     z = y;
                     y = temp;
 
+                    // Moved this from elsewhere.
+                    y *= 0.5f * length;
+
                     var type = 'm';
                     if (name[name.Length - 1] == 'L') { type = 'l'; }
                     if (name[name.Length - 1] == 'R') { type = 'r'; }
@@ -499,7 +502,7 @@ namespace Orbitaldrop.Cyberelegans
             }
 
             // Sy: Think this converts the Y coord into a flatter, worm like size.
-            pos.y *= 0.5f * length;
+            //pos.y *= 0.5f * length;
 
             var _x1 = mPoint[9 * i + 8].pos.x;
             var _x2 = mPoint[9 * i + 17].pos.x;
@@ -561,6 +564,26 @@ namespace Orbitaldrop.Cyberelegans
             if (Input.GetKey(KeyCode.Alpha1))
             {
                 var neuron = Array.Find(this.neuron, n => n.name == "DB02");
+                if (neuron != null)
+                {
+                    Debug.Log("Sending to Neuron " + neuron.name);
+                    neuron.GetSignal(1.0f);
+                }
+            }
+
+            if (Input.GetKey(KeyCode.Alpha2))
+            {
+                var neuron = Array.Find(this.neuron, n => n.name == "RIML");
+                if (neuron != null)
+                {
+                    Debug.Log("Sending to Neuron " + neuron.name);
+                    neuron.GetSignal(1.0f);
+                }
+            }
+
+            if (Input.GetKey(KeyCode.Alpha3))
+            {
+                var neuron = Array.Find(this.neuron, n => n.name == "RIMR");
                 if (neuron != null)
                 {
                     Debug.Log("Sending to Neuron " + neuron.name);

@@ -46,8 +46,11 @@ public class UniversalConstantsBehaviour : MonoBehaviour
 
     [SerializeField]
     public bool UpdateNeuronPositions = true;
-    
+
     [Header("Physics")]
+
+    [SerializeField]
+    public bool EnablePhysics = true;
 
     [SerializeField]
     public float AirFrictionCoefficient = 0.002f;

@@ -45,10 +45,13 @@ namespace Orbitaldrop.Cyberelegans
 
         public void Update()
         {
-            frame++;
-            if (frame == 2)
+            if (UniversalConstantsBehaviour.Instance.EnablePhysics)
             {
-                RigidBody.isKinematic = false;
+                frame++;
+                if (frame == 2)
+                {
+                    RigidBody.isKinematic = false;
+                }
             }
 
             return;
