@@ -11,7 +11,6 @@ namespace Orbitaldrop.Cyberelegans
 
         public GameObject GameObject { get; private set; }
         public Material Material { get; private set; }
-        public Rigidbody RigidBody { get; private set; }
 
         public MassPoint(GameObject parent, float mass, Vector3 pos) : base(pos)
         {
@@ -23,11 +22,6 @@ namespace Orbitaldrop.Cyberelegans
                 GameObject.transform.SetParent(parent.transform);
                 GameObject.transform.position = pos;
                 GameObject.name = "Mass";
-
-                RigidBody = GameObject.AddComponent<Rigidbody>();
-                RigidBody.mass = mass;
-                RigidBody.MovePosition(pos);                
-                RigidBody.isKinematic = true;
 
                 if (Material == null)
                 {
@@ -45,16 +39,10 @@ namespace Orbitaldrop.Cyberelegans
 
         public void Update()
         {
-            if (UniversalConstantsBehaviour.Instance.EnablePhysics)
+            if (!UniversalConstantsBehaviour.Instance.EnablePhysics)
             {
-                frame++;
-                if (frame == 2)
-                {
-                    RigidBody.isKinematic = false;
-                }
+                return;
             }
-
-            return;
 
             ApplyForce(new Vector3(0.0f, Physics.Gravity * mass, 0.0f));
 
@@ -102,17 +90,9 @@ namespace Orbitaldrop.Cyberelegans
 
         public void FixedUpdate()
         {
-            if (RigidBody != null)
-            {
-                RigidBody.AddForce(force, ForceMode.Force);
-
-                pos = RigidBody.position;
-            }
-
-            return;
-
-            pos += vel * Time.deltaTime;
-            vel += (force / mass) * Time.deltaTime;
+            var fdt = Time.fixedDeltaTime;
+            pos += vel * fdt;
+            vel += (force / mass) * fdt;
         }
 
         public virtual void Select()
