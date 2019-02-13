@@ -32,8 +32,9 @@ public class VerletTestWorm : MonoBehaviour
             springs =  new Spring[(3 * 8) + (size * ((5 * 8) + 1)) + (1 + 8)];
             int s = 0;
             
-            const float SpringConstant = 15.0f;
+            const float SpringConstant = 30.0f;
 
+            // Does not do anything in verlet system.
             var massOfPoint = 0.05f;
             
             massPoints[p++] = new MassPoint(massOfPoint, vshift + new Vector3(-0.7f * dx, 0f, 0f));

@@ -102,7 +102,7 @@ namespace Orbitaldrop.Cyberelegans
 
             if (isVisible)
             {
-                Debug.DrawLine(pos, originalPosition, Color.cyan);
+                //Debug.DrawLine(pos, originalPosition, Color.cyan);
             }
         }
     }

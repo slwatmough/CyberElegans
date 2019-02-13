@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Orbitaldrop.Cyberelegans.Verlet;
 using UnityEngine;
 
 namespace Orbitaldrop.Cyberelegans
@@ -20,13 +21,13 @@ namespace Orbitaldrop.Cyberelegans
 
         //private List<MassPoint> mPoint = new List<MassPoint>();
 
-        private MassPoint[] mPoint = new MassPoint[250];
-        private int nextMassPoint;
+        //private MassPoint[] mPoint = new MassPoint[250];
+        //private int nextMassPoint;
 
         //private List<Spring> spring = new List<Spring>();
 
-        private Spring[] spring = new Spring[1100];
-        private int nextSpring = 0;
+        //private Spring[] spring = new Spring[1100];
+        //private int nextSpring = 0;
         
         //private List<Muscle> muscle = new List<Muscle>();
 
@@ -52,6 +53,8 @@ namespace Orbitaldrop.Cyberelegans
 
         private float dx;
 
+        private VerletSim verlet = new VerletSim();
+        
         public CElegans(float length, int size, string neurons, string connections, string muscles, GameObject wormGO, GameObject neuronHolder, GameObject musclesHolder, GameObject masspointHolder, GameObject springHolder)
         {
             this.wormGO = wormGO;
@@ -71,45 +74,48 @@ namespace Orbitaldrop.Cyberelegans
 
             vshift = wormGO.transform.position + new Vector3(dl * size / 4.0f + 0.5f, 0.0f, dl / 3.0f / 2.0f);
 
+            verlet.CreateSimulatedShape(wormGO.transform.position, new VerletTestWorm.VerletWormFactory());
+            verlet.DrawPointScale = 0.05f;
+            
             #region Head
-            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-0.7f * dx, 0f, 0f)));
-
-            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, -dl * wp[0] / 2f, -0.35f * dl * wp[0])));
-            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, -dl * wp[0] / 2f, 0.35f * dl * wp[0])));
-            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, -0.35f * dl * wp[0], dl * wp[0] / 2f)));
-            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, 0.35f * dl * wp[0], dl * wp[0] / 2f)));
-
-            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, dl * wp[0] / 2, 0.35f * dl * wp[0])));
-            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, dl * wp[0] / 2, -0.35f * dl * wp[0])));
-            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, 0.35f * dl * wp[0], - dl * wp[0] / 2f)));
-            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, -0.35f * dl * wp[0], - dl * wp[0] / 2f)));
-
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[0], mPoint[1]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[0], mPoint[2]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[0], mPoint[3]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[0], mPoint[4]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[0], mPoint[5]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[0], mPoint[6]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[0], mPoint[7]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[0], mPoint[8]));
-            /**/                                             
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[1], mPoint[2]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[2], mPoint[3]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[3], mPoint[4]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[4], mPoint[5]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[5], mPoint[6]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[6], mPoint[7]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[7], mPoint[8]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[8], mPoint[1]));
-            /**/                                     
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[1], mPoint[5]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[2], mPoint[6]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[3], mPoint[7]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[4], mPoint[8]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[1], mPoint[6]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[2], mPoint[5]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[3], mPoint[8]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[4], mPoint[7]));
+//            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-0.7f * dx, 0f, 0f)));
+//
+//            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, -dl * wp[0] / 2f, -0.35f * dl * wp[0])));
+//            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, -dl * wp[0] / 2f, 0.35f * dl * wp[0])));
+//            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, -0.35f * dl * wp[0], dl * wp[0] / 2f)));
+//            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, 0.35f * dl * wp[0], dl * wp[0] / 2f)));
+//
+//            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, dl * wp[0] / 2, 0.35f * dl * wp[0])));
+//            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, dl * wp[0] / 2, -0.35f * dl * wp[0])));
+//            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, 0.35f * dl * wp[0], - dl * wp[0] / 2f)));
+//            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, -0.35f * dl * wp[0], - dl * wp[0] / 2f)));
+//
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[0], verlet.MassPoints[1]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[0], verlet.MassPoints[2]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[0], verlet.MassPoints[3]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[0], verlet.MassPoints[4]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[0], verlet.MassPoints[5]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[0], verlet.MassPoints[6]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[0], verlet.MassPoints[7]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[0], verlet.MassPoints[8]));
+//            /**/                                             
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[1], verlet.MassPoints[2]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[2], verlet.MassPoints[3]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[3], verlet.MassPoints[4]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[4], verlet.MassPoints[5]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[5], verlet.MassPoints[6]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[6], verlet.MassPoints[7]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[7], verlet.MassPoints[8]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[8], verlet.MassPoints[1]));
+//            /**/                                     
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[1], verlet.MassPoints[5]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[2], verlet.MassPoints[6]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[3], verlet.MassPoints[7]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[4], verlet.MassPoints[8]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[1], verlet.MassPoints[6]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[2], verlet.MassPoints[5]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[3], verlet.MassPoints[8]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[4], verlet.MassPoints[7]));
 
             table[nextTable++] = new Neuron[MAX_NEURONS_IN_TABLE_ENTRY];
             #endregion
@@ -119,283 +125,283 @@ namespace Orbitaldrop.Cyberelegans
             #region Body
             for (i = 1; i < size + 1; i++)
             {
-                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.0f+i)*dx, 0f		, 0f )) );
-                
-                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx, -0.50f*dl*wp[i], -0.35f*dl*wp[i] )) );
-                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx, -0.50f*dl*wp[i],  0.35f*dl*wp[i] )) );	
-                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx, -0.35f*dl*wp[i],  0.50f*dl*wp[i] )) );
-                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx,  0.35f*dl*wp[i],  0.50f*dl*wp[i] )) );
-                                                                                                                 
-                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx,  0.50f*dl*wp[i],  0.35f*dl*wp[i] )) );
-                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx,  0.50f*dl*wp[i], -0.35f*dl*wp[i] )) );	
-                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx,  0.35f*dl*wp[i], -0.50f*dl*wp[i] )) );
-                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx, -0.35f*dl*wp[i], -0.50f*dl*wp[i] )) );
-
-                //============
-
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9], mPoint[i * 9]));
-
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 1], mPoint[i * 9 + 2]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 2], mPoint[i * 9 + 3]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 3], mPoint[i * 9 + 4]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 4], mPoint[i * 9 + 5]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 5], mPoint[i * 9 + 6]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 6], mPoint[i * 9 + 7]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 7], mPoint[i * 9 + 8]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 8], mPoint[i * 9 + 1]));
-                                     
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 1], mPoint[i * 9 + 0]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 2], mPoint[i * 9 + 0]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 3], mPoint[i * 9 + 0]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 4], mPoint[i * 9 + 0]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 5], mPoint[i * 9 + 0]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 6], mPoint[i * 9 + 0]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 7], mPoint[i * 9 + 0]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[i * 9 + 8], mPoint[i * 9 + 0]));
-                                     
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 1], mPoint[i * 9 + 0]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 2], mPoint[i * 9 + 0]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 3], mPoint[i * 9 + 0]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 4], mPoint[i * 9 + 0]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 5], mPoint[i * 9 + 0]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 6], mPoint[i * 9 + 0]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 7], mPoint[i * 9 + 0]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 8], mPoint[i * 9 + 0]));
-                /**/                 
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 1], mPoint[i * 9 + 2]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 2], mPoint[i * 9 + 3]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 3], mPoint[i * 9 + 4]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 4], mPoint[i * 9 + 5]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 5], mPoint[i * 9 + 6]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 6], mPoint[i * 9 + 7]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 7], mPoint[i * 9 + 8]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 8], mPoint[i * 9 + 1]));
-                /**/                 
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 2], mPoint[i * 9 + 1]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 3], mPoint[i * 9 + 2]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 4], mPoint[i * 9 + 3]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 5], mPoint[i * 9 + 4]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 6], mPoint[i * 9 + 5]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 7], mPoint[i * 9 + 6]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 8], mPoint[i * 9 + 7]));
-                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 1], mPoint[i * 9 + 8]));
+//                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.0f+i)*dx, 0f		, 0f )) );
+//                
+//                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx, -0.50f*dl*wp[i], -0.35f*dl*wp[i] )) );
+//                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx, -0.50f*dl*wp[i],  0.35f*dl*wp[i] )) );	
+//                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx, -0.35f*dl*wp[i],  0.50f*dl*wp[i] )) );
+//                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx,  0.35f*dl*wp[i],  0.50f*dl*wp[i] )) );
+//                                                                                                                 
+//                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx,  0.50f*dl*wp[i],  0.35f*dl*wp[i] )) );
+//                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx,  0.50f*dl*wp[i], -0.35f*dl*wp[i] )) );	
+//                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx,  0.35f*dl*wp[i], -0.50f*dl*wp[i] )) );
+//                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx, -0.35f*dl*wp[i], -0.50f*dl*wp[i] )) );
+//
+//                //============
+//
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9], verlet.MassPoints[i * 9]));
+//
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 1], verlet.MassPoints[i * 9 + 2]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 2], verlet.MassPoints[i * 9 + 3]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 3], verlet.MassPoints[i * 9 + 4]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 4], verlet.MassPoints[i * 9 + 5]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 5], verlet.MassPoints[i * 9 + 6]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 6], verlet.MassPoints[i * 9 + 7]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 7], verlet.MassPoints[i * 9 + 8]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 8], verlet.MassPoints[i * 9 + 1]));
+//                                     
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 1], verlet.MassPoints[i * 9 + 0]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 2], verlet.MassPoints[i * 9 + 0]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 3], verlet.MassPoints[i * 9 + 0]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 4], verlet.MassPoints[i * 9 + 0]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 5], verlet.MassPoints[i * 9 + 0]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 6], verlet.MassPoints[i * 9 + 0]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 7], verlet.MassPoints[i * 9 + 0]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 8], verlet.MassPoints[i * 9 + 0]));
+//                                     
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 1], verlet.MassPoints[i * 9 + 0]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 2], verlet.MassPoints[i * 9 + 0]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 3], verlet.MassPoints[i * 9 + 0]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 4], verlet.MassPoints[i * 9 + 0]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 5], verlet.MassPoints[i * 9 + 0]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 6], verlet.MassPoints[i * 9 + 0]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 7], verlet.MassPoints[i * 9 + 0]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 8], verlet.MassPoints[i * 9 + 0]));
+//                /**/                 
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 1], verlet.MassPoints[i * 9 + 2]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 2], verlet.MassPoints[i * 9 + 3]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 3], verlet.MassPoints[i * 9 + 4]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 4], verlet.MassPoints[i * 9 + 5]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 5], verlet.MassPoints[i * 9 + 6]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 6], verlet.MassPoints[i * 9 + 7]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 7], verlet.MassPoints[i * 9 + 8]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 8], verlet.MassPoints[i * 9 + 1]));
+//                /**/                 
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 2], verlet.MassPoints[i * 9 + 1]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 3], verlet.MassPoints[i * 9 + 2]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 4], verlet.MassPoints[i * 9 + 3]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 5], verlet.MassPoints[i * 9 + 4]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 6], verlet.MassPoints[i * 9 + 5]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 7], verlet.MassPoints[i * 9 + 6]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 8], verlet.MassPoints[i * 9 + 7]));
+//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 1], verlet.MassPoints[i * 9 + 8]));
 
                 table[nextTable++] = new Neuron[MAX_NEURONS_IN_TABLE_ENTRY];
             }
 
-            addMuscle(new Muscle(mPoint[0 * 9 + 1], mPoint[1 * 9 + 1], "VL02"));
-            addMuscle(new Muscle(mPoint[2 * 9 + 1], mPoint[1 * 9 + 1], "VL02"));
-            addMuscle(new Muscle(mPoint[2 * 9 + 1], mPoint[3 * 9 + 1], "VL04"));
-            addMuscle(new Muscle(mPoint[4 * 9 + 1], mPoint[3 * 9 + 1], "VL04"));
-            addMuscle(new Muscle(mPoint[4 * 9 + 1], mPoint[5 * 9 + 1], "VL06"));
-            addMuscle(new Muscle(mPoint[6 * 9 + 1], mPoint[5 * 9 + 1], "VL06"));
-            addMuscle(new Muscle(mPoint[6 * 9 + 1], mPoint[7 * 9 + 1], "VL08"));
-            addMuscle(new Muscle(mPoint[8 * 9 + 1], mPoint[7 * 9 + 1], "VL08"));
-            addMuscle(new Muscle(mPoint[8 * 9 + 1], mPoint[9 * 9 + 1], "VL10"));
-            addMuscle(new Muscle(mPoint[10 * 9 + 1], mPoint[9 * 9 + 1], "VL10"));
-            addMuscle(new Muscle(mPoint[10 * 9 + 1], mPoint[11 * 9 + 1], "VL12"));
-            addMuscle(new Muscle(mPoint[12 * 9 + 1], mPoint[11 * 9 + 1], "VL12"));
-            addMuscle(new Muscle(mPoint[12 * 9 + 1], mPoint[13 * 9 + 1], "VL14"));
-            addMuscle(new Muscle(mPoint[14 * 9 + 1], mPoint[13 * 9 + 1], "VL14"));
-            addMuscle(new Muscle(mPoint[14 * 9 + 1], mPoint[15 * 9 + 1], "VL16"));
-            addMuscle(new Muscle(mPoint[16 * 9 + 1], mPoint[15 * 9 + 1], "VL16"));
-            addMuscle(new Muscle(mPoint[16 * 9 + 1], mPoint[17 * 9 + 1], "VL18"));
-            addMuscle(new Muscle(mPoint[18 * 9 + 1], mPoint[17 * 9 + 1], "VL18"));
-            addMuscle(new Muscle(mPoint[18 * 9 + 1], mPoint[19 * 9 + 1], "VL20"));
-            addMuscle(new Muscle(mPoint[20 * 9 + 1], mPoint[19 * 9 + 1], "VL20"));
-            addMuscle(new Muscle(mPoint[20 * 9 + 1], mPoint[21 * 9 + 1], "VL21"));
-            addMuscle(new Muscle(mPoint[22 * 9 + 1], mPoint[21 * 9 + 1], "VL21"));
-            addMuscle(new Muscle(mPoint[22 * 9 + 1], mPoint[23 * 9 + 1], "VL22"));
-            addMuscle(new Muscle(mPoint[24 * 9 + 1], mPoint[23 * 9 + 1], "VL22"));
-            addMuscle(new Muscle(mPoint[24 * 9 + 1], mPoint[25 * 9 + 1], "VL23"));
-            addMuscle(new Muscle(mPoint[26 * 9 + 1], mPoint[25 * 9 + 1], "VL23"));
-                                 
-            addMuscle(new Muscle(mPoint[0 * 9 + 2], mPoint[1 * 9 + 2], "VR02"));
-            addMuscle(new Muscle(mPoint[2 * 9 + 2], mPoint[1 * 9 + 2], "VR02"));
-            addMuscle(new Muscle(mPoint[2 * 9 + 2], mPoint[3 * 9 + 2], "VR04"));
-            addMuscle(new Muscle(mPoint[4 * 9 + 2], mPoint[3 * 9 + 2], "VR04"));
-            addMuscle(new Muscle(mPoint[4 * 9 + 2], mPoint[5 * 9 + 2], "VR06"));
-            addMuscle(new Muscle(mPoint[6 * 9 + 2], mPoint[5 * 9 + 2], "VR06"));
-            addMuscle(new Muscle(mPoint[6 * 9 + 2], mPoint[7 * 9 + 2], "VR08"));
-            addMuscle(new Muscle(mPoint[8 * 9 + 2], mPoint[7 * 9 + 2], "VR08"));
-            addMuscle(new Muscle(mPoint[8 * 9 + 2], mPoint[9 * 9 + 2], "VR10"));
-            addMuscle(new Muscle(mPoint[10 * 9 + 2], mPoint[9 * 9 + 2], "VR10"));
-            addMuscle(new Muscle(mPoint[10 * 9 + 2], mPoint[11 * 9 + 2], "VR12"));
-            addMuscle(new Muscle(mPoint[12 * 9 + 2], mPoint[11 * 9 + 2], "VR12"));
-            addMuscle(new Muscle(mPoint[12 * 9 + 2], mPoint[13 * 9 + 2], "VR14"));
-            addMuscle(new Muscle(mPoint[14 * 9 + 2], mPoint[13 * 9 + 2], "VR14"));
-            addMuscle(new Muscle(mPoint[14 * 9 + 2], mPoint[15 * 9 + 2], "VR16"));
-            addMuscle(new Muscle(mPoint[16 * 9 + 2], mPoint[15 * 9 + 2], "VR16"));
-            addMuscle(new Muscle(mPoint[16 * 9 + 2], mPoint[17 * 9 + 2], "VR18"));
-            addMuscle(new Muscle(mPoint[18 * 9 + 2], mPoint[17 * 9 + 2], "VR18"));
-            addMuscle(new Muscle(mPoint[18 * 9 + 2], mPoint[19 * 9 + 2], "VR20"));
-            addMuscle(new Muscle(mPoint[20 * 9 + 2], mPoint[19 * 9 + 2], "VR20"));
-            addMuscle(new Muscle(mPoint[20 * 9 + 2], mPoint[21 * 9 + 2], "VR22"));
-            addMuscle(new Muscle(mPoint[22 * 9 + 2], mPoint[21 * 9 + 2], "VR22"));
-            addMuscle(new Muscle(mPoint[22 * 9 + 2], mPoint[23 * 9 + 2], "VR23"));
-            addMuscle(new Muscle(mPoint[24 * 9 + 2], mPoint[23 * 9 + 2], "VR23"));
-            addMuscle(new Muscle(mPoint[24 * 9 + 2], mPoint[25 * 9 + 2], "VR24"));
-            addMuscle(new Muscle(mPoint[26 * 9 + 2], mPoint[25 * 9 + 2], "VR24"));
-                                 
-            addMuscle(new Muscle(mPoint[1 * 9 + 3], mPoint[2 * 9 + 3], "VR01"));
-            addMuscle(new Muscle(mPoint[3 * 9 + 3], mPoint[2 * 9 + 3], "VR01"));
-            addMuscle(new Muscle(mPoint[3 * 9 + 3], mPoint[4 * 9 + 3], "VR03"));
-            addMuscle(new Muscle(mPoint[5 * 9 + 3], mPoint[4 * 9 + 3], "VR03"));
-            addMuscle(new Muscle(mPoint[5 * 9 + 3], mPoint[6 * 9 + 3], "VR05"));
-            addMuscle(new Muscle(mPoint[7 * 9 + 3], mPoint[6 * 9 + 3], "VR05"));
-            addMuscle(new Muscle(mPoint[7 * 9 + 3], mPoint[8 * 9 + 3], "VR07"));
-            addMuscle(new Muscle(mPoint[9 * 9 + 3], mPoint[8 * 9 + 3], "VR07"));
-            addMuscle(new Muscle(mPoint[9 * 9 + 3], mPoint[10 * 9 + 3], "VR09"));
-            addMuscle(new Muscle(mPoint[11 * 9 + 3], mPoint[10 * 9 + 3], "VR09"));
-            addMuscle(new Muscle(mPoint[11 * 9 + 3], mPoint[12 * 9 + 3], "VR11"));
-            addMuscle(new Muscle(mPoint[13 * 9 + 3], mPoint[12 * 9 + 3], "VR11"));
-            addMuscle(new Muscle(mPoint[13 * 9 + 3], mPoint[14 * 9 + 3], "VR13"));
-            addMuscle(new Muscle(mPoint[15 * 9 + 3], mPoint[14 * 9 + 3], "VR13"));
-            addMuscle(new Muscle(mPoint[15 * 9 + 3], mPoint[16 * 9 + 3], "VR15"));
-            addMuscle(new Muscle(mPoint[17 * 9 + 3], mPoint[16 * 9 + 3], "VR15"));
-            addMuscle(new Muscle(mPoint[17 * 9 + 3], mPoint[18 * 9 + 3], "VR17"));
-            addMuscle(new Muscle(mPoint[19 * 9 + 3], mPoint[18 * 9 + 3], "VR17"));
-            addMuscle(new Muscle(mPoint[19 * 9 + 3], mPoint[20 * 9 + 3], "VR19"));
-            addMuscle(new Muscle(mPoint[21 * 9 + 3], mPoint[20 * 9 + 3], "VR19"));
-            addMuscle(new Muscle(mPoint[21 * 9 + 3], mPoint[22 * 9 + 3], "VR21"));
-            addMuscle(new Muscle(mPoint[23 * 9 + 3], mPoint[22 * 9 + 3], "VR21"));
-                                 
-            addMuscle(new Muscle(mPoint[1 * 9 + 4], mPoint[2 * 9 + 4], "DR01"));
-            addMuscle(new Muscle(mPoint[3 * 9 + 4], mPoint[2 * 9 + 4], "DR01"));
-            addMuscle(new Muscle(mPoint[3 * 9 + 4], mPoint[4 * 9 + 4], "DR03"));
-            addMuscle(new Muscle(mPoint[5 * 9 + 4], mPoint[4 * 9 + 4], "DR03"));
-            addMuscle(new Muscle(mPoint[5 * 9 + 4], mPoint[6 * 9 + 4], "DR05"));
-            addMuscle(new Muscle(mPoint[7 * 9 + 4], mPoint[6 * 9 + 4], "DR05"));
-            addMuscle(new Muscle(mPoint[7 * 9 + 4], mPoint[8 * 9 + 4], "DR07"));
-            addMuscle(new Muscle(mPoint[9 * 9 + 4], mPoint[8 * 9 + 4], "DR07"));
-            addMuscle(new Muscle(mPoint[9 * 9 + 4], mPoint[10 * 9 + 4], "DR09"));
-            addMuscle(new Muscle(mPoint[11 * 9 + 4], mPoint[10 * 9 + 4], "DR09"));
-            addMuscle(new Muscle(mPoint[11 * 9 + 4], mPoint[12 * 9 + 4], "DR11"));
-            addMuscle(new Muscle(mPoint[13 * 9 + 4], mPoint[12 * 9 + 4], "DR11"));
-            addMuscle(new Muscle(mPoint[13 * 9 + 4], mPoint[14 * 9 + 4], "DR13"));
-            addMuscle(new Muscle(mPoint[15 * 9 + 4], mPoint[14 * 9 + 4], "DR13"));
-            addMuscle(new Muscle(mPoint[15 * 9 + 4], mPoint[16 * 9 + 4], "DR15"));
-            addMuscle(new Muscle(mPoint[17 * 9 + 4], mPoint[16 * 9 + 4], "DR15"));
-            addMuscle(new Muscle(mPoint[17 * 9 + 4], mPoint[18 * 9 + 4], "DR17"));
-            addMuscle(new Muscle(mPoint[19 * 9 + 4], mPoint[18 * 9 + 4], "DR17"));
-            addMuscle(new Muscle(mPoint[19 * 9 + 4], mPoint[20 * 9 + 4], "DR19"));
-            addMuscle(new Muscle(mPoint[21 * 9 + 4], mPoint[20 * 9 + 4], "DR19"));
-            addMuscle(new Muscle(mPoint[21 * 9 + 4], mPoint[22 * 9 + 4], "DR21"));
-            addMuscle(new Muscle(mPoint[23 * 9 + 4], mPoint[22 * 9 + 4], "DR21"));
-            addMuscle(new Muscle(mPoint[23 * 9 + 4], mPoint[24 * 9 + 4], "DR23"));
-            addMuscle(new Muscle(mPoint[25 * 9 + 4], mPoint[24 * 9 + 4], "DR23"));
-                                 
-            addMuscle(new Muscle(mPoint[0 * 9 + 5], mPoint[1 * 9 + 5], "DR02"));
-            addMuscle(new Muscle(mPoint[2 * 9 + 5], mPoint[1 * 9 + 5], "DR02"));
-            addMuscle(new Muscle(mPoint[2 * 9 + 5], mPoint[3 * 9 + 5], "DR04"));
-            addMuscle(new Muscle(mPoint[4 * 9 + 5], mPoint[3 * 9 + 5], "DR04"));
-            addMuscle(new Muscle(mPoint[4 * 9 + 5], mPoint[5 * 9 + 5], "DR06"));
-            addMuscle(new Muscle(mPoint[6 * 9 + 5], mPoint[5 * 9 + 5], "DR06"));
-            addMuscle(new Muscle(mPoint[6 * 9 + 5], mPoint[7 * 9 + 5], "DR08"));
-            addMuscle(new Muscle(mPoint[8 * 9 + 5], mPoint[7 * 9 + 5], "DR08"));
-            addMuscle(new Muscle(mPoint[8 * 9 + 5], mPoint[9 * 9 + 5], "DR10"));
-            addMuscle(new Muscle(mPoint[10 * 9 + 5], mPoint[9 * 9 + 5], "DR10"));
-            addMuscle(new Muscle(mPoint[10 * 9 + 5], mPoint[11 * 9 + 5], "DR12"));
-            addMuscle(new Muscle(mPoint[12 * 9 + 5], mPoint[11 * 9 + 5], "DR12"));
-            addMuscle(new Muscle(mPoint[12 * 9 + 5], mPoint[13 * 9 + 5], "DR14"));
-            addMuscle(new Muscle(mPoint[14 * 9 + 5], mPoint[13 * 9 + 5], "DR14"));
-            addMuscle(new Muscle(mPoint[14 * 9 + 5], mPoint[15 * 9 + 5], "DR16"));
-            addMuscle(new Muscle(mPoint[16 * 9 + 5], mPoint[15 * 9 + 5], "DR16"));
-            addMuscle(new Muscle(mPoint[16 * 9 + 5], mPoint[17 * 9 + 5], "DR18"));
-            addMuscle(new Muscle(mPoint[18 * 9 + 5], mPoint[17 * 9 + 5], "DR18"));
-            addMuscle(new Muscle(mPoint[18 * 9 + 5], mPoint[19 * 9 + 5], "DR20"));
-            addMuscle(new Muscle(mPoint[20 * 9 + 5], mPoint[19 * 9 + 5], "DR20"));
-            addMuscle(new Muscle(mPoint[20 * 9 + 5], mPoint[21 * 9 + 5], "DR22"));
-            addMuscle(new Muscle(mPoint[22 * 9 + 5], mPoint[21 * 9 + 5], "DR22"));
-            addMuscle(new Muscle(mPoint[22 * 9 + 5], mPoint[23 * 9 + 5], "DR24"));
-            addMuscle(new Muscle(mPoint[24 * 9 + 5], mPoint[23 * 9 + 5], "DR24"));
-                                 
-            addMuscle(new Muscle(mPoint[0 * 9 + 6], mPoint[1 * 9 + 6], "DL02"));
-            addMuscle(new Muscle(mPoint[2 * 9 + 6], mPoint[1 * 9 + 6], "DL02"));
-            addMuscle(new Muscle(mPoint[2 * 9 + 6], mPoint[3 * 9 + 6], "DL04"));
-            addMuscle(new Muscle(mPoint[4 * 9 + 6], mPoint[3 * 9 + 6], "DL04"));
-            addMuscle(new Muscle(mPoint[4 * 9 + 6], mPoint[5 * 9 + 6], "DL06"));
-            addMuscle(new Muscle(mPoint[6 * 9 + 6], mPoint[5 * 9 + 6], "DL06"));
-            addMuscle(new Muscle(mPoint[6 * 9 + 6], mPoint[7 * 9 + 6], "DL08"));
-            addMuscle(new Muscle(mPoint[8 * 9 + 6], mPoint[7 * 9 + 6], "DL08"));
-            addMuscle(new Muscle(mPoint[8 * 9 + 6], mPoint[9 * 9 + 6], "DL10"));
-            addMuscle(new Muscle(mPoint[10 * 9 + 6], mPoint[9 * 9 + 6], "DL10"));
-            addMuscle(new Muscle(mPoint[10 * 9 + 6], mPoint[11 * 9 + 6], "DL12"));
-            addMuscle(new Muscle(mPoint[12 * 9 + 6], mPoint[11 * 9 + 6], "DL12"));
-            addMuscle(new Muscle(mPoint[12 * 9 + 6], mPoint[13 * 9 + 6], "DL14"));
-            addMuscle(new Muscle(mPoint[14 * 9 + 6], mPoint[13 * 9 + 6], "DL14"));
-            addMuscle(new Muscle(mPoint[14 * 9 + 6], mPoint[15 * 9 + 6], "DL16"));
-            addMuscle(new Muscle(mPoint[16 * 9 + 6], mPoint[15 * 9 + 6], "DL16"));
-            addMuscle(new Muscle(mPoint[16 * 9 + 6], mPoint[17 * 9 + 6], "DL18"));
-            addMuscle(new Muscle(mPoint[18 * 9 + 6], mPoint[17 * 9 + 6], "DL18"));
-            addMuscle(new Muscle(mPoint[18 * 9 + 6], mPoint[19 * 9 + 6], "DL20"));
-            addMuscle(new Muscle(mPoint[20 * 9 + 6], mPoint[19 * 9 + 6], "DL20"));
-            addMuscle(new Muscle(mPoint[20 * 9 + 6], mPoint[21 * 9 + 6], "DL22"));
-            addMuscle(new Muscle(mPoint[22 * 9 + 6], mPoint[21 * 9 + 6], "DL22"));
-            addMuscle(new Muscle(mPoint[22 * 9 + 6], mPoint[23 * 9 + 6], "DL24"));
-            addMuscle(new Muscle(mPoint[24 * 9 + 6], mPoint[23 * 9 + 6], "DL24"));
-                                 
-            addMuscle(new Muscle(mPoint[1 * 9 + 7], mPoint[2 * 9 + 7], "DL01"));
-            addMuscle(new Muscle(mPoint[3 * 9 + 7], mPoint[2 * 9 + 7], "DL01"));
-            addMuscle(new Muscle(mPoint[3 * 9 + 7], mPoint[4 * 9 + 7], "DL03"));
-            addMuscle(new Muscle(mPoint[5 * 9 + 7], mPoint[4 * 9 + 7], "DL03"));
-            addMuscle(new Muscle(mPoint[5 * 9 + 7], mPoint[6 * 9 + 7], "DL05"));
-            addMuscle(new Muscle(mPoint[7 * 9 + 7], mPoint[6 * 9 + 7], "DL05"));
-            addMuscle(new Muscle(mPoint[7 * 9 + 7], mPoint[8 * 9 + 7], "DL07"));
-            addMuscle(new Muscle(mPoint[9 * 9 + 7], mPoint[8 * 9 + 7], "DL07"));
-            addMuscle(new Muscle(mPoint[9 * 9 + 7], mPoint[10 * 9 + 7], "DL09"));
-            addMuscle(new Muscle(mPoint[11 * 9 + 7], mPoint[10 * 9 + 7], "DL09"));
-            addMuscle(new Muscle(mPoint[11 * 9 + 7], mPoint[12 * 9 + 7], "DL11"));
-            addMuscle(new Muscle(mPoint[13 * 9 + 7], mPoint[12 * 9 + 7], "DL11"));
-            addMuscle(new Muscle(mPoint[13 * 9 + 7], mPoint[14 * 9 + 7], "DL13"));
-            addMuscle(new Muscle(mPoint[15 * 9 + 7], mPoint[14 * 9 + 7], "DL13"));
-            addMuscle(new Muscle(mPoint[15 * 9 + 7], mPoint[16 * 9 + 7], "DL15"));
-            addMuscle(new Muscle(mPoint[17 * 9 + 7], mPoint[16 * 9 + 7], "DL15"));
-            addMuscle(new Muscle(mPoint[17 * 9 + 7], mPoint[18 * 9 + 7], "DL17"));
-            addMuscle(new Muscle(mPoint[19 * 9 + 7], mPoint[18 * 9 + 7], "DL17"));
-            addMuscle(new Muscle(mPoint[19 * 9 + 7], mPoint[20 * 9 + 7], "DL19"));
-            addMuscle(new Muscle(mPoint[21 * 9 + 7], mPoint[20 * 9 + 7], "DL19"));
-            addMuscle(new Muscle(mPoint[21 * 9 + 7], mPoint[22 * 9 + 7], "DL21"));
-            addMuscle(new Muscle(mPoint[23 * 9 + 7], mPoint[22 * 9 + 7], "DL21"));
-            addMuscle(new Muscle(mPoint[23 * 9 + 7], mPoint[24 * 9 + 7], "DL23"));
-            addMuscle(new Muscle(mPoint[25 * 9 + 7], mPoint[24 * 9 + 7], "DL23"));
-                                 
-            addMuscle(new Muscle(mPoint[1 * 9 + 8], mPoint[2 * 9 + 8], "VL01"));
-            addMuscle(new Muscle(mPoint[3 * 9 + 8], mPoint[2 * 9 + 8], "VL01"));
-            addMuscle(new Muscle(mPoint[3 * 9 + 8], mPoint[4 * 9 + 8], "VL03"));
-            addMuscle(new Muscle(mPoint[5 * 9 + 8], mPoint[4 * 9 + 8], "VL03"));
-            addMuscle(new Muscle(mPoint[5 * 9 + 8], mPoint[6 * 9 + 8], "VL05"));
-            addMuscle(new Muscle(mPoint[7 * 9 + 8], mPoint[6 * 9 + 8], "VL05"));
-            addMuscle(new Muscle(mPoint[7 * 9 + 8], mPoint[8 * 9 + 8], "VL07"));
-            addMuscle(new Muscle(mPoint[9 * 9 + 8], mPoint[8 * 9 + 8], "VL07"));
-            addMuscle(new Muscle(mPoint[9 * 9 + 8], mPoint[10 * 9 + 8], "VL09"));
-            addMuscle(new Muscle(mPoint[11 * 9 + 8], mPoint[10 * 9 + 8], "VL09"));
-            addMuscle(new Muscle(mPoint[11 * 9 + 8], mPoint[12 * 9 + 8], "VL11"));
-            addMuscle(new Muscle(mPoint[13 * 9 + 8], mPoint[12 * 9 + 8], "VL11"));
-            addMuscle(new Muscle(mPoint[13 * 9 + 8], mPoint[14 * 9 + 8], "VL13"));
-            addMuscle(new Muscle(mPoint[15 * 9 + 8], mPoint[14 * 9 + 8], "VL13"));
-            addMuscle(new Muscle(mPoint[15 * 9 + 8], mPoint[16 * 9 + 8], "VL15"));
-            addMuscle(new Muscle(mPoint[17 * 9 + 8], mPoint[16 * 9 + 8], "VL15"));
-            addMuscle(new Muscle(mPoint[17 * 9 + 8], mPoint[18 * 9 + 8], "VL17"));
-            addMuscle(new Muscle(mPoint[19 * 9 + 8], mPoint[18 * 9 + 8], "VL17"));
-            addMuscle(new Muscle(mPoint[19 * 9 + 8], mPoint[20 * 9 + 8], "VL19"));
-            addMuscle(new Muscle(mPoint[21 * 9 + 8], mPoint[20 * 9 + 8], "VL19"));
-            addMuscle(new Muscle(mPoint[21 * 9 + 8], mPoint[22 * 9 + 8], "VL21"));
-            addMuscle(new Muscle(mPoint[23 * 9 + 8], mPoint[22 * 9 + 8], "VL21"));
+            addMuscle(new Muscle(verlet.MassPoints, 0 * 9 + 1, 1 * 9 + 1, "VL02"));
+            addMuscle(new Muscle(verlet.MassPoints, 2 * 9 + 1, 1 * 9 + 1, "VL02"));
+            addMuscle(new Muscle(verlet.MassPoints, 2 * 9 + 1, 3 * 9 + 1, "VL04"));
+            addMuscle(new Muscle(verlet.MassPoints, 4 * 9 + 1, 3 * 9 + 1, "VL04"));
+            addMuscle(new Muscle(verlet.MassPoints, 4 * 9 + 1, 5 * 9 + 1, "VL06"));
+            addMuscle(new Muscle(verlet.MassPoints, 6 * 9 + 1, 5 * 9 + 1, "VL06"));
+            addMuscle(new Muscle(verlet.MassPoints, 6 * 9 + 1, 7 * 9 + 1, "VL08"));
+            addMuscle(new Muscle(verlet.MassPoints, 8 * 9 + 1, 7 * 9 + 1, "VL08"));
+            addMuscle(new Muscle(verlet.MassPoints, 8 * 9 + 1, 9 * 9 + 1, "VL10"));
+            addMuscle(new Muscle(verlet.MassPoints, 10 * 9 + 1, 9 * 9 + 1, "VL10"));
+            addMuscle(new Muscle(verlet.MassPoints, 10 * 9 + 1, 11 * 9 + 1, "VL12"));
+            addMuscle(new Muscle(verlet.MassPoints, 12 * 9 + 1, 11 * 9 + 1, "VL12"));
+            addMuscle(new Muscle(verlet.MassPoints, 12 * 9 + 1, 13 * 9 + 1, "VL14"));
+            addMuscle(new Muscle(verlet.MassPoints, 14 * 9 + 1, 13 * 9 + 1, "VL14"));
+            addMuscle(new Muscle(verlet.MassPoints, 14 * 9 + 1, 15 * 9 + 1, "VL16"));
+            addMuscle(new Muscle(verlet.MassPoints, 16 * 9 + 1, 15 * 9 + 1, "VL16"));
+            addMuscle(new Muscle(verlet.MassPoints, 16 * 9 + 1, 17 * 9 + 1, "VL18"));
+            addMuscle(new Muscle(verlet.MassPoints, 18 * 9 + 1, 17 * 9 + 1, "VL18"));
+            addMuscle(new Muscle(verlet.MassPoints, 18 * 9 + 1, 19 * 9 + 1, "VL20"));
+            addMuscle(new Muscle(verlet.MassPoints, 20 * 9 + 1, 19 * 9 + 1, "VL20"));
+            addMuscle(new Muscle(verlet.MassPoints, 20 * 9 + 1, 21 * 9 + 1, "VL21"));
+            addMuscle(new Muscle(verlet.MassPoints, 22 * 9 + 1, 21 * 9 + 1, "VL21"));
+            addMuscle(new Muscle(verlet.MassPoints, 22 * 9 + 1, 23 * 9 + 1, "VL22"));
+            addMuscle(new Muscle(verlet.MassPoints, 24 * 9 + 1, 23 * 9 + 1, "VL22"));
+            addMuscle(new Muscle(verlet.MassPoints, 24 * 9 + 1, 25 * 9 + 1, "VL23"));
+            addMuscle(new Muscle(verlet.MassPoints, 26 * 9 + 1, 25 * 9 + 1, "VL23"));
+                         
+            addMuscle(new Muscle(verlet.MassPoints, 0 * 9 + 2, 1 * 9 + 2, "VR02"));
+            addMuscle(new Muscle(verlet.MassPoints, 2 * 9 + 2, 1 * 9 + 2, "VR02"));
+            addMuscle(new Muscle(verlet.MassPoints, 2 * 9 + 2, 3 * 9 + 2, "VR04"));
+            addMuscle(new Muscle(verlet.MassPoints, 4 * 9 + 2, 3 * 9 + 2, "VR04"));
+            addMuscle(new Muscle(verlet.MassPoints, 4 * 9 + 2, 5 * 9 + 2, "VR06"));
+            addMuscle(new Muscle(verlet.MassPoints, 6 * 9 + 2, 5 * 9 + 2, "VR06"));
+            addMuscle(new Muscle(verlet.MassPoints, 6 * 9 + 2, 7 * 9 + 2, "VR08"));
+            addMuscle(new Muscle(verlet.MassPoints, 8 * 9 + 2, 7 * 9 + 2, "VR08"));
+            addMuscle(new Muscle(verlet.MassPoints, 8 * 9 + 2, 9 * 9 + 2, "VR10"));
+            addMuscle(new Muscle(verlet.MassPoints, 10 * 9 + 2, 9 * 9 + 2, "VR10"));
+            addMuscle(new Muscle(verlet.MassPoints, 10 * 9 + 2, 11 * 9 + 2, "VR12"));
+            addMuscle(new Muscle(verlet.MassPoints, 12 * 9 + 2, 11 * 9 + 2, "VR12"));
+            addMuscle(new Muscle(verlet.MassPoints, 12 * 9 + 2, 13 * 9 + 2, "VR14"));
+            addMuscle(new Muscle(verlet.MassPoints, 14 * 9 + 2, 13 * 9 + 2, "VR14"));
+            addMuscle(new Muscle(verlet.MassPoints, 14 * 9 + 2, 15 * 9 + 2, "VR16"));
+            addMuscle(new Muscle(verlet.MassPoints, 16 * 9 + 2, 15 * 9 + 2, "VR16"));
+            addMuscle(new Muscle(verlet.MassPoints, 16 * 9 + 2, 17 * 9 + 2, "VR18"));
+            addMuscle(new Muscle(verlet.MassPoints, 18 * 9 + 2, 17 * 9 + 2, "VR18"));
+            addMuscle(new Muscle(verlet.MassPoints, 18 * 9 + 2, 19 * 9 + 2, "VR20"));
+            addMuscle(new Muscle(verlet.MassPoints, 20 * 9 + 2, 19 * 9 + 2, "VR20"));
+            addMuscle(new Muscle(verlet.MassPoints, 20 * 9 + 2, 21 * 9 + 2, "VR22"));
+            addMuscle(new Muscle(verlet.MassPoints, 22 * 9 + 2, 21 * 9 + 2, "VR22"));
+            addMuscle(new Muscle(verlet.MassPoints, 22 * 9 + 2, 23 * 9 + 2, "VR23"));
+            addMuscle(new Muscle(verlet.MassPoints, 24 * 9 + 2, 23 * 9 + 2, "VR23"));
+            addMuscle(new Muscle(verlet.MassPoints, 24 * 9 + 2, 25 * 9 + 2, "VR24"));
+            addMuscle(new Muscle(verlet.MassPoints, 26 * 9 + 2, 25 * 9 + 2, "VR24"));
+           
+            addMuscle(new Muscle(verlet.MassPoints, 1 * 9 + 3, 2 * 9 + 3, "VR01"));
+            addMuscle(new Muscle(verlet.MassPoints, 3 * 9 + 3, 2 * 9 + 3, "VR01"));
+            addMuscle(new Muscle(verlet.MassPoints, 3 * 9 + 3, 4 * 9 + 3, "VR03"));
+            addMuscle(new Muscle(verlet.MassPoints, 5 * 9 + 3, 4 * 9 + 3, "VR03"));
+            addMuscle(new Muscle(verlet.MassPoints, 5 * 9 + 3, 6 * 9 + 3, "VR05"));
+            addMuscle(new Muscle(verlet.MassPoints, 7 * 9 + 3, 6 * 9 + 3, "VR05"));
+            addMuscle(new Muscle(verlet.MassPoints, 7 * 9 + 3, 8 * 9 + 3, "VR07"));
+            addMuscle(new Muscle(verlet.MassPoints, 9 * 9 + 3, 8 * 9 + 3, "VR07"));
+            addMuscle(new Muscle(verlet.MassPoints, 9 * 9 + 3, 10 * 9 + 3, "VR09"));
+            addMuscle(new Muscle(verlet.MassPoints, 11 * 9 + 3, 10 * 9 + 3, "VR09"));
+            addMuscle(new Muscle(verlet.MassPoints, 11 * 9 + 3, 12 * 9 + 3, "VR11"));
+            addMuscle(new Muscle(verlet.MassPoints, 13 * 9 + 3, 12 * 9 + 3, "VR11"));
+            addMuscle(new Muscle(verlet.MassPoints, 13 * 9 + 3, 14 * 9 + 3, "VR13"));
+            addMuscle(new Muscle(verlet.MassPoints, 15 * 9 + 3, 14 * 9 + 3, "VR13"));
+            addMuscle(new Muscle(verlet.MassPoints, 15 * 9 + 3, 16 * 9 + 3, "VR15"));
+            addMuscle(new Muscle(verlet.MassPoints, 17 * 9 + 3, 16 * 9 + 3, "VR15"));
+            addMuscle(new Muscle(verlet.MassPoints, 17 * 9 + 3, 18 * 9 + 3, "VR17"));
+            addMuscle(new Muscle(verlet.MassPoints, 19 * 9 + 3, 18 * 9 + 3, "VR17"));
+            addMuscle(new Muscle(verlet.MassPoints, 19 * 9 + 3, 20 * 9 + 3, "VR19"));
+            addMuscle(new Muscle(verlet.MassPoints, 21 * 9 + 3, 20 * 9 + 3, "VR19"));
+            addMuscle(new Muscle(verlet.MassPoints, 21 * 9 + 3, 22 * 9 + 3, "VR21"));
+            addMuscle(new Muscle(verlet.MassPoints, 23 * 9 + 3, 22 * 9 + 3, "VR21"));
+          
+            addMuscle(new Muscle(verlet.MassPoints, 1 * 9 + 4, 2 * 9 + 4, "DR01"));
+            addMuscle(new Muscle(verlet.MassPoints, 3 * 9 + 4, 2 * 9 + 4, "DR01"));
+            addMuscle(new Muscle(verlet.MassPoints, 3 * 9 + 4, 4 * 9 + 4, "DR03"));
+            addMuscle(new Muscle(verlet.MassPoints, 5 * 9 + 4, 4 * 9 + 4, "DR03"));
+            addMuscle(new Muscle(verlet.MassPoints, 5 * 9 + 4, 6 * 9 + 4, "DR05"));
+            addMuscle(new Muscle(verlet.MassPoints, 7 * 9 + 4, 6 * 9 + 4, "DR05"));
+            addMuscle(new Muscle(verlet.MassPoints, 7 * 9 + 4, 8 * 9 + 4, "DR07"));
+            addMuscle(new Muscle(verlet.MassPoints, 9 * 9 + 4, 8 * 9 + 4, "DR07"));
+            addMuscle(new Muscle(verlet.MassPoints, 9 * 9 + 4, 10 * 9 + 4, "DR09"));
+            addMuscle(new Muscle(verlet.MassPoints, 11 * 9 + 4, 10 * 9 + 4, "DR09"));
+            addMuscle(new Muscle(verlet.MassPoints, 11 * 9 + 4, 12 * 9 + 4, "DR11"));
+            addMuscle(new Muscle(verlet.MassPoints, 13 * 9 + 4, 12 * 9 + 4, "DR11"));
+            addMuscle(new Muscle(verlet.MassPoints, 13 * 9 + 4, 14 * 9 + 4, "DR13"));
+            addMuscle(new Muscle(verlet.MassPoints, 15 * 9 + 4, 14 * 9 + 4, "DR13"));
+            addMuscle(new Muscle(verlet.MassPoints, 15 * 9 + 4, 16 * 9 + 4, "DR15"));
+            addMuscle(new Muscle(verlet.MassPoints, 17 * 9 + 4, 16 * 9 + 4, "DR15"));
+            addMuscle(new Muscle(verlet.MassPoints, 17 * 9 + 4, 18 * 9 + 4, "DR17"));
+            addMuscle(new Muscle(verlet.MassPoints, 19 * 9 + 4, 18 * 9 + 4, "DR17"));
+            addMuscle(new Muscle(verlet.MassPoints, 19 * 9 + 4, 20 * 9 + 4, "DR19"));
+            addMuscle(new Muscle(verlet.MassPoints, 21 * 9 + 4, 20 * 9 + 4, "DR19"));
+            addMuscle(new Muscle(verlet.MassPoints, 21 * 9 + 4, 22 * 9 + 4, "DR21"));
+            addMuscle(new Muscle(verlet.MassPoints, 23 * 9 + 4, 22 * 9 + 4, "DR21"));
+            addMuscle(new Muscle(verlet.MassPoints, 23 * 9 + 4, 24 * 9 + 4, "DR23"));
+            addMuscle(new Muscle(verlet.MassPoints, 25 * 9 + 4, 24 * 9 + 4, "DR23"));
+          
+            addMuscle(new Muscle(verlet.MassPoints, 0 * 9 + 5, 1 * 9 + 5, "DR02"));
+            addMuscle(new Muscle(verlet.MassPoints, 2 * 9 + 5, 1 * 9 + 5, "DR02"));
+            addMuscle(new Muscle(verlet.MassPoints, 2 * 9 + 5, 3 * 9 + 5, "DR04"));
+            addMuscle(new Muscle(verlet.MassPoints, 4 * 9 + 5, 3 * 9 + 5, "DR04"));
+            addMuscle(new Muscle(verlet.MassPoints, 4 * 9 + 5, 5 * 9 + 5, "DR06"));
+            addMuscle(new Muscle(verlet.MassPoints, 6 * 9 + 5, 5 * 9 + 5, "DR06"));
+            addMuscle(new Muscle(verlet.MassPoints, 6 * 9 + 5, 7 * 9 + 5, "DR08"));
+            addMuscle(new Muscle(verlet.MassPoints, 8 * 9 + 5, 7 * 9 + 5, "DR08"));
+            addMuscle(new Muscle(verlet.MassPoints, 8 * 9 + 5, 9 * 9 + 5, "DR10"));
+            addMuscle(new Muscle(verlet.MassPoints, 10 * 9 + 5, 9 * 9 + 5, "DR10"));
+            addMuscle(new Muscle(verlet.MassPoints, 10 * 9 + 5, 11 * 9 + 5, "DR12"));
+            addMuscle(new Muscle(verlet.MassPoints, 12 * 9 + 5, 11 * 9 + 5, "DR12"));
+            addMuscle(new Muscle(verlet.MassPoints, 12 * 9 + 5, 13 * 9 + 5, "DR14"));
+            addMuscle(new Muscle(verlet.MassPoints, 14 * 9 + 5, 13 * 9 + 5, "DR14"));
+            addMuscle(new Muscle(verlet.MassPoints, 14 * 9 + 5, 15 * 9 + 5, "DR16"));
+            addMuscle(new Muscle(verlet.MassPoints, 16 * 9 + 5, 15 * 9 + 5, "DR16"));
+            addMuscle(new Muscle(verlet.MassPoints, 16 * 9 + 5, 17 * 9 + 5, "DR18"));
+            addMuscle(new Muscle(verlet.MassPoints, 18 * 9 + 5, 17 * 9 + 5, "DR18"));
+            addMuscle(new Muscle(verlet.MassPoints, 18 * 9 + 5, 19 * 9 + 5, "DR20"));
+            addMuscle(new Muscle(verlet.MassPoints, 20 * 9 + 5, 19 * 9 + 5, "DR20"));
+            addMuscle(new Muscle(verlet.MassPoints, 20 * 9 + 5, 21 * 9 + 5, "DR22"));
+            addMuscle(new Muscle(verlet.MassPoints, 22 * 9 + 5, 21 * 9 + 5, "DR22"));
+            addMuscle(new Muscle(verlet.MassPoints, 22 * 9 + 5, 23 * 9 + 5, "DR24"));
+            addMuscle(new Muscle(verlet.MassPoints, 24 * 9 + 5, 23 * 9 + 5, "DR24"));
+          
+            addMuscle(new Muscle(verlet.MassPoints, 0 * 9 + 6, 1 * 9 + 6, "DL02"));
+            addMuscle(new Muscle(verlet.MassPoints, 2 * 9 + 6, 1 * 9 + 6, "DL02"));
+            addMuscle(new Muscle(verlet.MassPoints, 2 * 9 + 6, 3 * 9 + 6, "DL04"));
+            addMuscle(new Muscle(verlet.MassPoints, 4 * 9 + 6, 3 * 9 + 6, "DL04"));
+            addMuscle(new Muscle(verlet.MassPoints, 4 * 9 + 6, 5 * 9 + 6, "DL06"));
+            addMuscle(new Muscle(verlet.MassPoints, 6 * 9 + 6, 5 * 9 + 6, "DL06"));
+            addMuscle(new Muscle(verlet.MassPoints, 6 * 9 + 6, 7 * 9 + 6, "DL08"));
+            addMuscle(new Muscle(verlet.MassPoints, 8 * 9 + 6, 7 * 9 + 6, "DL08"));
+            addMuscle(new Muscle(verlet.MassPoints, 8 * 9 + 6, 9 * 9 + 6, "DL10"));
+            addMuscle(new Muscle(verlet.MassPoints, 10 * 9 + 6, 9 * 9 + 6, "DL10"));
+            addMuscle(new Muscle(verlet.MassPoints, 10 * 9 + 6, 11 * 9 + 6, "DL12"));
+            addMuscle(new Muscle(verlet.MassPoints, 12 * 9 + 6, 11 * 9 + 6, "DL12"));
+            addMuscle(new Muscle(verlet.MassPoints, 12 * 9 + 6, 13 * 9 + 6, "DL14"));
+            addMuscle(new Muscle(verlet.MassPoints, 14 * 9 + 6, 13 * 9 + 6, "DL14"));
+            addMuscle(new Muscle(verlet.MassPoints, 14 * 9 + 6, 15 * 9 + 6, "DL16"));
+            addMuscle(new Muscle(verlet.MassPoints, 16 * 9 + 6, 15 * 9 + 6, "DL16"));
+            addMuscle(new Muscle(verlet.MassPoints, 16 * 9 + 6, 17 * 9 + 6, "DL18"));
+            addMuscle(new Muscle(verlet.MassPoints, 18 * 9 + 6, 17 * 9 + 6, "DL18"));
+            addMuscle(new Muscle(verlet.MassPoints, 18 * 9 + 6, 19 * 9 + 6, "DL20"));
+            addMuscle(new Muscle(verlet.MassPoints, 20 * 9 + 6, 19 * 9 + 6, "DL20"));
+            addMuscle(new Muscle(verlet.MassPoints, 20 * 9 + 6, 21 * 9 + 6, "DL22"));
+            addMuscle(new Muscle(verlet.MassPoints, 22 * 9 + 6, 21 * 9 + 6, "DL22"));
+            addMuscle(new Muscle(verlet.MassPoints, 22 * 9 + 6, 23 * 9 + 6, "DL24"));
+            addMuscle(new Muscle(verlet.MassPoints, 24 * 9 + 6, 23 * 9 + 6, "DL24"));
+                               
+            addMuscle(new Muscle(verlet.MassPoints, 1 * 9 + 7, 2 * 9 + 7, "DL01"));
+            addMuscle(new Muscle(verlet.MassPoints, 3 * 9 + 7, 2 * 9 + 7, "DL01"));
+            addMuscle(new Muscle(verlet.MassPoints, 3 * 9 + 7, 4 * 9 + 7, "DL03"));
+            addMuscle(new Muscle(verlet.MassPoints, 5 * 9 + 7, 4 * 9 + 7, "DL03"));
+            addMuscle(new Muscle(verlet.MassPoints, 5 * 9 + 7, 6 * 9 + 7, "DL05"));
+            addMuscle(new Muscle(verlet.MassPoints, 7 * 9 + 7, 6 * 9 + 7, "DL05"));
+            addMuscle(new Muscle(verlet.MassPoints, 7 * 9 + 7, 8 * 9 + 7, "DL07"));
+            addMuscle(new Muscle(verlet.MassPoints, 9 * 9 + 7, 8 * 9 + 7, "DL07"));
+            addMuscle(new Muscle(verlet.MassPoints, 9 * 9 + 7, 10 * 9 + 7, "DL09"));
+            addMuscle(new Muscle(verlet.MassPoints, 11 * 9 + 7, 10 * 9 + 7, "DL09"));
+            addMuscle(new Muscle(verlet.MassPoints, 11 * 9 + 7, 12 * 9 + 7, "DL11"));
+            addMuscle(new Muscle(verlet.MassPoints, 13 * 9 + 7, 12 * 9 + 7, "DL11"));
+            addMuscle(new Muscle(verlet.MassPoints, 13 * 9 + 7, 14 * 9 + 7, "DL13"));
+            addMuscle(new Muscle(verlet.MassPoints, 15 * 9 + 7, 14 * 9 + 7, "DL13"));
+            addMuscle(new Muscle(verlet.MassPoints, 15 * 9 + 7, 16 * 9 + 7, "DL15"));
+            addMuscle(new Muscle(verlet.MassPoints, 17 * 9 + 7, 16 * 9 + 7, "DL15"));
+            addMuscle(new Muscle(verlet.MassPoints, 17 * 9 + 7, 18 * 9 + 7, "DL17"));
+            addMuscle(new Muscle(verlet.MassPoints, 19 * 9 + 7, 18 * 9 + 7, "DL17"));
+            addMuscle(new Muscle(verlet.MassPoints, 19 * 9 + 7, 20 * 9 + 7, "DL19"));
+            addMuscle(new Muscle(verlet.MassPoints, 21 * 9 + 7, 20 * 9 + 7, "DL19"));
+            addMuscle(new Muscle(verlet.MassPoints, 21 * 9 + 7, 22 * 9 + 7, "DL21"));
+            addMuscle(new Muscle(verlet.MassPoints, 23 * 9 + 7, 22 * 9 + 7, "DL21"));
+            addMuscle(new Muscle(verlet.MassPoints, 23 * 9 + 7, 24 * 9 + 7, "DL23"));
+            addMuscle(new Muscle(verlet.MassPoints, 25 * 9 + 7, 24 * 9 + 7, "DL23"));
+          
+            addMuscle(new Muscle(verlet.MassPoints, 1 * 9 + 8, 2 * 9 + 8, "VL01"));
+            addMuscle(new Muscle(verlet.MassPoints, 3 * 9 + 8, 2 * 9 + 8, "VL01"));
+            addMuscle(new Muscle(verlet.MassPoints, 3 * 9 + 8, 4 * 9 + 8, "VL03"));
+            addMuscle(new Muscle(verlet.MassPoints, 5 * 9 + 8, 4 * 9 + 8, "VL03"));
+            addMuscle(new Muscle(verlet.MassPoints, 5 * 9 + 8, 6 * 9 + 8, "VL05"));
+            addMuscle(new Muscle(verlet.MassPoints, 7 * 9 + 8, 6 * 9 + 8, "VL05"));
+            addMuscle(new Muscle(verlet.MassPoints, 7 * 9 + 8, 8 * 9 + 8, "VL07"));
+            addMuscle(new Muscle(verlet.MassPoints, 9 * 9 + 8, 8 * 9 + 8, "VL07"));
+            addMuscle(new Muscle(verlet.MassPoints, 9 * 9 + 8, 10 * 9 + 8, "VL09"));
+            addMuscle(new Muscle(verlet.MassPoints, 11 * 9 + 8, 10 * 9 + 8, "VL09"));
+            addMuscle(new Muscle(verlet.MassPoints, 11 * 9 + 8, 12 * 9 + 8, "VL11"));
+            addMuscle(new Muscle(verlet.MassPoints, 13 * 9 + 8, 12 * 9 + 8, "VL11"));
+            addMuscle(new Muscle(verlet.MassPoints, 13 * 9 + 8, 14 * 9 + 8, "VL13"));
+            addMuscle(new Muscle(verlet.MassPoints, 15 * 9 + 8, 14 * 9 + 8, "VL13"));
+            addMuscle(new Muscle(verlet.MassPoints, 15 * 9 + 8, 16 * 9 + 8, "VL15"));
+            addMuscle(new Muscle(verlet.MassPoints, 17 * 9 + 8, 16 * 9 + 8, "VL15"));
+            addMuscle(new Muscle(verlet.MassPoints, 17 * 9 + 8, 18 * 9 + 8, "VL17"));
+            addMuscle(new Muscle(verlet.MassPoints, 19 * 9 + 8, 18 * 9 + 8, "VL17"));
+            addMuscle(new Muscle(verlet.MassPoints, 19 * 9 + 8, 20 * 9 + 8, "VL19"));
+            addMuscle(new Muscle(verlet.MassPoints, 21 * 9 + 8, 20 * 9 + 8, "VL19"));
+            addMuscle(new Muscle(verlet.MassPoints, 21 * 9 + 8, 22 * 9 + 8, "VL21"));
+            addMuscle(new Muscle(verlet.MassPoints, 23 * 9 + 8, 22 * 9 + 8, "VL21"));
             #endregion
 
             #region Tail
-            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1 * dx - i * dx, 0, 0)));
-
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 0], mPoint[i * 9 + 0]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 1], mPoint[i * 9 + 0]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 2], mPoint[i * 9 + 0]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 3], mPoint[i * 9 + 0]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 4], mPoint[i * 9 + 0]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 5], mPoint[i * 9 + 0]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 6], mPoint[i * 9 + 0]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 7], mPoint[i * 9 + 0]));
-            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, mPoint[(i - 1) * 9 + 8], mPoint[i * 9 + 0]));
+//            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1 * dx - i * dx, 0, 0)));
+//
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 0], verlet.MassPoints[i * 9 + 0]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 1], verlet.MassPoints[i * 9 + 0]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 2], verlet.MassPoints[i * 9 + 0]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 3], verlet.MassPoints[i * 9 + 0]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 4], verlet.MassPoints[i * 9 + 0]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 5], verlet.MassPoints[i * 9 + 0]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 6], verlet.MassPoints[i * 9 + 0]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 7], verlet.MassPoints[i * 9 + 0]));
+//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 8], verlet.MassPoints[i * 9 + 0]));
             #endregion
 
             using (var reader = new StreamReader(new MemoryStream(System.Text.Encoding.UTF8.GetBytes(neurons))))
@@ -495,7 +501,7 @@ namespace Orbitaldrop.Cyberelegans
             for(i = 0; i < nextTable; i++)
             {
                 // Sy: This is supposed to be looking for the two sets of mass points either side of the neuron, so we can calculate a ratio position.
-                if ((pos.x - mPoint[9 * i + 8].pos.x) * (pos.x - mPoint[9 * i + 17].pos.x) <= 0)
+                if ((pos.x - verlet.MassPoints[9 * i + 8].pos.x) * (pos.x - verlet.MassPoints[9 * i + 17].pos.x) <= 0)
                 {
                     break;
                 }
@@ -504,12 +510,12 @@ namespace Orbitaldrop.Cyberelegans
             // Sy: Think this converts the Y coord into a flatter, worm like size.
             //pos.y *= 0.5f * length;
 
-            var _x1 = mPoint[9 * i + 8].pos.x;
-            var _x2 = mPoint[9 * i + 17].pos.x;
-            var _y1 = mPoint[9 * i + 3].pos.y;
-            var _y2 = mPoint[9 * i + 8].pos.y;
-            var _z1 = mPoint[9 * i + 1].pos.z;
-            var _z2 = mPoint[9 * i + 6].pos.z;
+            var _x1 = verlet.MassPoints[9 * i + 8].pos.x;
+            var _x2 = verlet.MassPoints[9 * i + 17].pos.x;
+            var _y1 = verlet.MassPoints[9 * i + 1].pos.y;
+            var _y2 = verlet.MassPoints[9 * i + 6].pos.y;
+            var _z1 = verlet.MassPoints[9 * i + 3].pos.z;
+            var _z2 = verlet.MassPoints[9 * i + 8].pos.z;
 
             var ratioX = (pos.x - _x1) / Mathf.Abs(_x2 - _x1);
             var ratioY = (pos.y - _y1) / Mathf.Abs(_y2 - _y1);
@@ -543,16 +549,6 @@ namespace Orbitaldrop.Cyberelegans
         private void addMuscle(Muscle m)
         {
             muscle[nextMuscle++] = m;
-        }
-
-        public void addMPoint(MassPoint mp)
-        {
-            mPoint[nextMassPoint++] = mp;
-        }
-        
-        public void addSpring(Spring s)
-        {
-            spring[nextSpring++] = s;
         }
 
         public void Update(float dt)
@@ -597,23 +593,12 @@ namespace Orbitaldrop.Cyberelegans
             
             for (int n = 0; n < nextNeuron; n++) { neuron[n].Update(); }
             
-            for (int mp = 0; mp < nextMassPoint; mp++) {
-                var massPoint = mPoint[mp];
-                massPoint.Init();
-                massPoint.Update();
-            }
-            //mPoint.ForEach(mp =>
-            //{
-            //    mp.Init();
-            //    mp.Update();
-            //});
-
-            applyFriction();
-
-            for (int s = 0; s < nextSpring; s++) { spring[s].Update(); }
+            verlet.Update(Time.deltaTime);
             
             for (int m = 0; m < nextMuscle; m++) { muscle[m].Update(); }
             
+            //applyFriction();
+
             if (mode3)
             {
                 // Urgle. Some sinusodal input bullshit here.
@@ -631,8 +616,10 @@ namespace Orbitaldrop.Cyberelegans
 
         public void FixedUpdate()
         {
-            for (int s = 0; s < nextSpring; s++) { spring[s].FixedUpdate(); }
-            for (int mp = 0; mp < nextMassPoint; mp++) { mPoint[mp].FixedUpdate(); }
+            verlet.FixedUpdate(Time.fixedDeltaTime, sim =>
+            {
+                for (int m = 0; m < nextMuscle; m++) { muscle[m].FixedUpdate(); }
+            });
         }
 
         private void neuronPosCorrection()
@@ -644,12 +631,12 @@ namespace Orbitaldrop.Cyberelegans
             {
                 if (nextTableFor[i] == 0) continue;
 
-                var _x1 = mPoint[9 * i + 8].pos.x;
-                var _x2 = mPoint[9 * i + 17].pos.x;
-                var _y1 = mPoint[9 * i + 3].pos.y;
-                var _y2 = mPoint[9 * i + 8].pos.y;
-                var _z1 = mPoint[9 * i + 1].pos.z;
-                var _z2 = mPoint[9 * i + 6].pos.z;
+                var _x1 = verlet.MassPoints[9 * i + 8].pos.x;
+                var _x2 = verlet.MassPoints[9 * i + 17].pos.x;
+                var _y1 = verlet.MassPoints[9 * i + 1].pos.y;
+                var _y2 = verlet.MassPoints[9 * i + 6].pos.y;
+                var _z1 = verlet.MassPoints[9 * i + 3].pos.z;
+                var _z2 = verlet.MassPoints[9 * i + 8].pos.z;
 
                 Neuron[] tableI = table[i];
 
@@ -662,15 +649,15 @@ namespace Orbitaldrop.Cyberelegans
                     var ratioZ = tableIJ.ratioZ;
 
                     /*
-                    var p1 = (mPoint[9 * i + 8].pos + mPoint[9 + i + 1].pos) / 2.0f;
-                    var p2 = (mPoint[9 * i + 2].pos + mPoint[9 + i + 3].pos) / 2.0f;
-                    var p3 = (mPoint[9 * i + 4].pos + mPoint[9 + i + 5].pos) / 2.0f;
-                    var p4 = (mPoint[9 * i + 6].pos + mPoint[9 + i + 7].pos) / 2.0f;
+                    var p1 = (verlet.MassPoints[9 * i + 8].pos + verlet.MassPoints[9 + i + 1].pos) / 2.0f;
+                    var p2 = (verlet.MassPoints[9 * i + 2].pos + verlet.MassPoints[9 + i + 3].pos) / 2.0f;
+                    var p3 = (verlet.MassPoints[9 * i + 4].pos + verlet.MassPoints[9 + i + 5].pos) / 2.0f;
+                    var p4 = (verlet.MassPoints[9 * i + 6].pos + verlet.MassPoints[9 + i + 7].pos) / 2.0f;
 
-                    var p5 = (mPoint[9 * i + 17].pos + mPoint[9 + i + 10].pos) / 2.0f;
-                    var p6 = (mPoint[9 * i + 11].pos + mPoint[9 + i + 12].pos) / 2.0f;
-                    var p7 = (mPoint[9 * i + 13].pos + mPoint[9 + i + 14].pos) / 2.0f;
-                    var p8 = (mPoint[9 * i + 15].pos + mPoint[9 + i + 16].pos) / 2.0f;
+                    var p5 = (verlet.MassPoints[9 * i + 17].pos + verlet.MassPoints[9 + i + 10].pos) / 2.0f;
+                    var p6 = (verlet.MassPoints[9 * i + 11].pos + verlet.MassPoints[9 + i + 12].pos) / 2.0f;
+                    var p7 = (verlet.MassPoints[9 * i + 13].pos + verlet.MassPoints[9 + i + 14].pos) / 2.0f;
+                    var p8 = (verlet.MassPoints[9 * i + 15].pos + verlet.MassPoints[9 + i + 16].pos) / 2.0f;
 
                     var pp1 = p1 * (1.0f - ratioX) + p5 * ratioX;
                     var pp2 = p2 * (1.0f - ratioX) + p6 * ratioX;
@@ -693,27 +680,25 @@ namespace Orbitaldrop.Cyberelegans
 
         private void applyFriction()
         {
-            for(int i = 0; i < nextMassPoint; i++)
+            for(int i = 0; i < verlet.MassPoints.Length; i++)
             {
-                MassPoint mPointI = mPoint[i];
-
-                if (mPointI.pos.z <= 0)
+                if (verlet.MassPoints[i].pos.z <= 0)
                 {
-                    var vel = mPointI.vel;
+                    var vel = verlet.MassPoints[i].vel;
                     vel.z = 0;
 
                     var dp = Vector3.zero;
                     if (i <= 8)
                     {
-                        dp = mPointI.pos - mPoint[i + 9].pos;
+                        dp = verlet.MassPoints[i].pos - verlet.MassPoints[i + 9].pos;
                     }
-                    else if (i >= nextMassPoint - 9)
+                    else if (i >= verlet.MassPoints.Length - 9)
                     {
-                        dp = mPoint[i - 9].pos - mPointI.pos;
+                        dp = verlet.MassPoints[i - 9].pos - verlet.MassPoints[i].pos;
                     }
                     else
                     {
-                        dp = (mPoint[i - 9].pos - mPoint[i + 9].pos) / 2.0f;
+                        dp = (verlet.MassPoints[i - 9].pos - verlet.MassPoints[i + 9].pos) / 2.0f;
                     }
                     dp.z = 0.0f;
 
@@ -721,7 +706,7 @@ namespace Orbitaldrop.Cyberelegans
                     var tangent = dp * Vector3.Dot(vel, dp);
                     var normal = vel - tangent;
                     var force = -normal - tangent / 32.0f;
-                    mPointI.ApplyForce(force);
+                    verlet.MassPoints[i].accel += force;
                 }
             }
         }
@@ -738,15 +723,15 @@ namespace Orbitaldrop.Cyberelegans
                 for (int m = 0; m < nextMuscle; m++) { muscle[m].Draw(musclesHolder); }
             }
 
-            if (UniversalConstantsBehaviour.Instance.ShowMassPoints)
-            {
-                for (int mp = 0; mp < nextMassPoint; mp++) { mPoint[mp].Draw(masspointHolder); }
-            }
-
-            if (UniversalConstantsBehaviour.Instance.ShowSprings)
-            {
-                for (int s = 0; s < nextSpring; s++) { spring[s].Draw(springHolder); }
-            }
+//            if (UniversalConstantsBehaviour.Instance.ShowMassPoints)
+//            {
+//                for (int mp = 0; mp < nextMassPoint; mp++) { verlet.MassPoints[mp].Draw(masspointHolder); }
+//            }
+//
+//            if (UniversalConstantsBehaviour.Instance.ShowSprings)
+//            {
+//                for (int s = 0; s < nextSpring; s++) { spring[s].Draw(springHolder); }
+//            }
         }
     }
 }

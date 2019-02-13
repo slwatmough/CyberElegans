@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Orbitaldrop.Cyberelegans.Verlet
@@ -94,11 +95,15 @@ namespace Orbitaldrop.Cyberelegans.Verlet
 		}
 	}
 
+	public delegate void OnMassPointAddedDelegate(MassPoint[] masses, int index);
+	
+	public delegate void OnSpringAddedDelegate(Spring[] springs, int index);
+	
 	public class VerletSim
 	{
-		private MassPoint[] _massPoint;
+		public MassPoint[] MassPoints;
 
-		private Spring[] Springs;
+		public Spring[] Springs;
 
 		public float ForceDueToGravity = 9.81f * 0.1f;
 
@@ -108,33 +113,53 @@ namespace Orbitaldrop.Cyberelegans.Verlet
 
 		public float DrawPointScale = 0.2f;
 
+		public event OnMassPointAddedDelegate OnMassPointAdded;
+		
+		public event OnSpringAddedDelegate OnSpringAdded;
+		
 		public void CreateSimulatedShape(Vector3 origin, IVerletShapeFactory factory)
 		{
-			factory.Createshape(origin, out _massPoint, out Springs);
+			factory.Createshape(origin, out MassPoints, out Springs);
+
+			if (OnMassPointAdded != null)
+			{
+				for (int m = 0; m < MassPoints.Length; m++)
+				{
+					OnMassPointAdded(MassPoints, m);
+				}
+			}
+			
+			if (OnSpringAdded != null)
+			{
+				for (int s = 0; s < Springs.Length; s++)
+				{
+					OnSpringAdded(Springs, s);
+				}
+			}
 		}
 
 		public void Update(float deltaTime)
 		{
-			for (var m = 0; m < _massPoint.Length; m++)
+			for (var m = 0; m < MassPoints.Length; m++)
 			{
-				var p = _massPoint[m].pos;
+				var p = MassPoints[m].pos;
 				Debug.DrawLine(p - Vector3.left * DrawPointScale, p + Vector3.left * DrawPointScale, Color.red);
 				Debug.DrawLine(p - Vector3.up * DrawPointScale, p + Vector3.up * DrawPointScale, Color.green);
 				Debug.DrawLine(p - Vector3.forward * DrawPointScale, p + Vector3.forward * DrawPointScale,
 					Color.blue);
 
-				Debug.DrawLine(p, p + (_massPoint[m].pos - _massPoint[m].previousPosition), Color.yellow);
+				Debug.DrawLine(p, p + (MassPoints[m].pos - MassPoints[m].previousPosition), Color.yellow);
 			}
 
 			for (var s = 0; s < Springs.Length; s++)
 			{
 				var extensionPercentage =
-					(_massPoint[Springs[s].PointIndex2].pos - _massPoint[Springs[s].PointIndex1].pos).magnitude /
+					(MassPoints[Springs[s].PointIndex2].pos - MassPoints[Springs[s].PointIndex1].pos).magnitude /
 					Springs[s].RestLength;
 
 				Debug.DrawLine(
-					_massPoint[Springs[s].PointIndex1].pos,
-					_massPoint[Springs[s].PointIndex2].pos,
+					MassPoints[Springs[s].PointIndex1].pos,
+					MassPoints[Springs[s].PointIndex2].pos,
 					(Springs[s].Strength < 1.5f
 						? Color.Lerp(Color.blue, Color.red, extensionPercentage * 0.5f)
 						: Color.Lerp(Color.cyan, Color.magenta, extensionPercentage * 0.5f))
@@ -142,11 +167,11 @@ namespace Orbitaldrop.Cyberelegans.Verlet
 			}
 		}
 
-		public void FixedUpdate(float fixedTime)
+		public void FixedUpdate(float fixedTime, Action<VerletSim> additionalIntegration = null)
 		{
-			for (var m = 0; m < _massPoint.Length; m++)
+			for (var m = 0; m < MassPoints.Length; m++)
 			{
-				_massPoint[m].accel = Vector3.down * ForceDueToGravity;
+				MassPoints[m].accel = Vector3.down * ForceDueToGravity;
 			}
 
 			for (var s = 0; s < Springs.Length; s++)
@@ -160,50 +185,55 @@ namespace Orbitaldrop.Cyberelegans.Verlet
 				);
 			}
 
-			for (var m = 0; m < _massPoint.Length; m++)
+			if (additionalIntegration != null)
 			{
-				if (_massPoint[m].anchored)
+				additionalIntegration(this);
+			}
+
+			for (var m = 0; m < MassPoints.Length; m++)
+			{
+				if (MassPoints[m].anchored)
 				{
-					_massPoint[m].accel = _massPoint[m].vel = Vector3.zero;
-					_massPoint[m].pos = _massPoint[m].previousPosition;
+					MassPoints[m].accel = MassPoints[m].vel = Vector3.zero;
+					MassPoints[m].pos = MassPoints[m].previousPosition;
 				}
 				else
 				{
-					_massPoint[m].vel = _massPoint[m].pos - _massPoint[m].previousPosition;
-					_massPoint[m].previousPosition = _massPoint[m].pos;
-					_massPoint[m].pos = _massPoint[m].pos +
-					                     _massPoint[m].vel * Damping +
-					                     _massPoint[m].accel * (fixedTime * fixedTime);
+					MassPoints[m].vel = MassPoints[m].pos - MassPoints[m].previousPosition;
+					MassPoints[m].previousPosition = MassPoints[m].pos;
+					MassPoints[m].pos = MassPoints[m].pos +
+					                     MassPoints[m].vel * Damping +
+					                     MassPoints[m].accel * (fixedTime * fixedTime);
 				}
 			}
 
-			for (var m = 0; m < _massPoint.Length; m++)
+			for (var m = 0; m < MassPoints.Length; m++)
 			{
-				if (_massPoint[m].pos.y <= 0.0f)
+				if (MassPoints[m].pos.y <= 0.0f)
 				{
-					_massPoint[m].pos.y = 0.0f;
+					MassPoints[m].pos.y = 0.0f;
 				}
 			}
 		}
 
 		void FixedDistanceConstraint(int p1, int p2, float distance, float? compensate1, float? compensate2)
 		{
-			var delta = _massPoint[p2].pos - _massPoint[p1].pos;
+			var delta = MassPoints[p2].pos - MassPoints[p1].pos;
 			var deltaLength = delta.magnitude;
 			if (deltaLength > 0.0f)
 			{
 				var diff = (deltaLength - distance) / deltaLength;
 				if (compensate1.HasValue)
 				{
-					_massPoint[p1].pos = _massPoint[p1].pos + delta * compensate1.Value * diff;
+					MassPoints[p1].pos = MassPoints[p1].pos + delta * compensate1.Value * diff;
 				}
 
 				if (compensate2.HasValue)
 				{
-					_massPoint[p2].pos = _massPoint[p2].pos - delta * compensate2.Value * diff;
+					MassPoints[p2].pos = MassPoints[p2].pos - delta * compensate2.Value * diff;
 				}
 
-				var adjustedDelta = delta = _massPoint[p2].pos - _massPoint[p1].pos;
+				var adjustedDelta = delta = MassPoints[p2].pos - MassPoints[p1].pos;
 				var adjustedDeltaLength = adjustedDelta.magnitude;
 			}
 		}
