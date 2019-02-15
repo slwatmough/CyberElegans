@@ -32,22 +32,35 @@ public class VerletTestWorm : MonoBehaviour
             springs =  new Spring[(3 * 8) + (size * ((5 * 8) + 1)) + (1 + 8)];
             int s = 0;
             
-            const float SpringConstant = 30.0f;
+            const float SpringConstant = 1.0f;
 
             // Does not do anything in verlet system.
             var massOfPoint = 0.05f;
             
-            massPoints[p++] = new MassPoint(massOfPoint, vshift + new Vector3(-0.7f * dx, 0f, 0f));
+            massPoints[p++] = new MassPoint(massOfPoint, vshift + new Vector3(-0.7f * dx, 0f, 0f)).WithColor(Color.black);
+       
+            /*
+             *           Yellow:5        Cyan:6
+             * 
+             *     Magenta:4                    Grey:7
+             *                    ^
+             *                  Black:0
+             * 
+             *     Blue:3                       White:8
+             *
+             *            Green:2       Red:1
+             * 
+             */
+            
+            massPoints[p++] = new MassPoint(massOfPoint, vshift + new Vector3(-1.5f * dx, -dl * wp[0] / 2f, -0.35f * dl * wp[0])).WithColor(Color.red);
+            massPoints[p++] = new MassPoint(massOfPoint, vshift + new Vector3(-1.5f * dx, -dl * wp[0] / 2f, 0.35f * dl * wp[0])).WithColor(Color.green);
+            massPoints[p++] = new MassPoint(massOfPoint, vshift + new Vector3(-1.5f * dx, -0.35f * dl * wp[0], dl * wp[0] / 2f)).WithColor(Color.blue);
+            massPoints[p++] = new MassPoint(massOfPoint, vshift + new Vector3(-1.5f * dx, 0.35f * dl * wp[0], dl * wp[0] / 2f)).WithColor(Color.magenta);
 
-            massPoints[p++] = new MassPoint(massOfPoint, vshift + new Vector3(-1.5f * dx, -dl * wp[0] / 2f, -0.35f * dl * wp[0]));
-            massPoints[p++] = new MassPoint(massOfPoint, vshift + new Vector3(-1.5f * dx, -dl * wp[0] / 2f, 0.35f * dl * wp[0]));
-            massPoints[p++] = new MassPoint(massOfPoint, vshift + new Vector3(-1.5f * dx, -0.35f * dl * wp[0], dl * wp[0] / 2f));
-            massPoints[p++] = new MassPoint(massOfPoint, vshift + new Vector3(-1.5f * dx, 0.35f * dl * wp[0], dl * wp[0] / 2f));
-
-            massPoints[p++] = new MassPoint(massOfPoint, vshift + new Vector3(-1.5f * dx, dl * wp[0] / 2, 0.35f * dl * wp[0]));
-            massPoints[p++] = new MassPoint(massOfPoint, vshift + new Vector3(-1.5f * dx, dl * wp[0] / 2, -0.35f * dl * wp[0]));
-            massPoints[p++] = new MassPoint(massOfPoint, vshift + new Vector3(-1.5f * dx, 0.35f * dl * wp[0], - dl * wp[0] / 2f));
-            massPoints[p++] = new MassPoint(massOfPoint, vshift + new Vector3(-1.5f * dx, -0.35f * dl * wp[0], - dl * wp[0] / 2f));
+            massPoints[p++] = new MassPoint(massOfPoint, vshift + new Vector3(-1.5f * dx, dl * wp[0] / 2, 0.35f * dl * wp[0])).WithColor(Color.yellow);
+            massPoints[p++] = new MassPoint(massOfPoint, vshift + new Vector3(-1.5f * dx, dl * wp[0] / 2, -0.35f * dl * wp[0])).WithColor(Color.cyan);
+            massPoints[p++] = new MassPoint(massOfPoint, vshift + new Vector3(-1.5f * dx, 0.35f * dl * wp[0], - dl * wp[0] / 2f)).WithColor(Color.grey);
+            massPoints[p++] = new MassPoint(massOfPoint, vshift + new Vector3(-1.5f * dx, -0.35f * dl * wp[0], - dl * wp[0] / 2f)).WithColor(Color.white);
 
             springs[s++] = new Spring(massPoints, 0, 1, SpringConstant);
             springs[s++] = new Spring(massPoints, 0, 2, SpringConstant);
@@ -161,7 +174,6 @@ public class VerletTestWorm : MonoBehaviour
     {
         sim = new VerletSim();
         sim.CreateSimulatedShape(new Vector3(0.0f, 0.3f, 0.0f), new VerletWormFactory());
-        sim.DrawPointScale = 0.1f;
     }
 
     // Update is called once per frame

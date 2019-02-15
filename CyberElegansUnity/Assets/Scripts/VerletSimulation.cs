@@ -13,6 +13,8 @@ namespace Orbitaldrop.Cyberelegans.Verlet
 
 		public Vector3 previousPosition;
 
+		public Color? Color;
+		
 		public MassPoint(float m, Vector3 p) : this(m, p.x, p.y, p.z)
 		{
 			// Does nothing.
@@ -25,6 +27,14 @@ namespace Orbitaldrop.Cyberelegans.Verlet
 			accel = Vector3.zero;
 			vel = Vector3.zero;
 			previousPosition = pos;
+			Color = null;
+		}
+
+		public MassPoint WithColor(Color c)
+		{
+			Color = c;
+			
+			return this;
 		}
 	}
 
@@ -98,6 +108,39 @@ namespace Orbitaldrop.Cyberelegans.Verlet
 	public delegate void OnMassPointAddedDelegate(MassPoint[] masses, int index);
 	
 	public delegate void OnSpringAddedDelegate(Spring[] springs, int index);
+
+	public interface IConstants
+	{
+		float SpringStrength { get; }
+		
+		float Damping { get; }
+		
+		float ForceDueToGravity { get; }
+
+		float DrawPointScale { get; }
+	}
+
+	public class DefaultConstants : IConstants
+	{
+		public float SpringStrength
+		{
+			get { return 0.0125f; }
+		}
+		public float Damping
+		{
+			get { return 1.0f; }
+		}
+
+		public float ForceDueToGravity
+		{
+			get { return 9.81f * 0.1f; }
+		}
+		
+		public float DrawPointScale
+		{
+			get { return 0.2f; }
+		}
+	}
 	
 	public class VerletSim
 	{
@@ -105,14 +148,8 @@ namespace Orbitaldrop.Cyberelegans.Verlet
 
 		public Spring[] Springs;
 
-		public float ForceDueToGravity = 9.81f * 0.1f;
-
-		public float SpringForce = 0.0125f;
-
-		public float Damping = 1.0f;
-
-		public float DrawPointScale = 0.2f;
-
+		public IConstants Constants = new DefaultConstants();
+		
 		public event OnMassPointAddedDelegate OnMassPointAdded;
 		
 		public event OnSpringAddedDelegate OnSpringAdded;
@@ -140,38 +177,51 @@ namespace Orbitaldrop.Cyberelegans.Verlet
 
 		public void Update(float deltaTime)
 		{
-			for (var m = 0; m < MassPoints.Length; m++)
+			if (UniversalConstantsBehaviour.Instance.ShowMassPoints)
 			{
-				var p = MassPoints[m].pos;
-				Debug.DrawLine(p - Vector3.left * DrawPointScale, p + Vector3.left * DrawPointScale, Color.red);
-				Debug.DrawLine(p - Vector3.up * DrawPointScale, p + Vector3.up * DrawPointScale, Color.green);
-				Debug.DrawLine(p - Vector3.forward * DrawPointScale, p + Vector3.forward * DrawPointScale,
-					Color.blue);
+				for (var m = 0; m < MassPoints.Length; m++)
+				{
+					var p = MassPoints[m].pos;
+					Debug.DrawLine(p - Vector3.left * Constants.DrawPointScale, p + Vector3.left * Constants.DrawPointScale,
+						MassPoints[m].Color.HasValue ? MassPoints[m].Color.Value : Color.red);
+					Debug.DrawLine(p - Vector3.up * Constants.DrawPointScale, p + Vector3.up * Constants.DrawPointScale,
+						MassPoints[m].Color.HasValue ? MassPoints[m].Color.Value : Color.green);
+					Debug.DrawLine(p - Vector3.forward * Constants.DrawPointScale, p + Vector3.forward * Constants.DrawPointScale,
+						MassPoints[m].Color.HasValue ? MassPoints[m].Color.Value : Color.blue);
 
-				Debug.DrawLine(p, p + (MassPoints[m].pos - MassPoints[m].previousPosition), Color.yellow);
+					Debug.DrawLine(p, p + (MassPoints[m].pos - MassPoints[m].previousPosition), Color.yellow);
+				}
 			}
 
-			for (var s = 0; s < Springs.Length; s++)
+			if (UniversalConstantsBehaviour.Instance.ShowSprings)
 			{
-				var extensionPercentage =
-					(MassPoints[Springs[s].PointIndex2].pos - MassPoints[Springs[s].PointIndex1].pos).magnitude /
-					Springs[s].RestLength;
+				for (var s = 0; s < Springs.Length; s++)
+				{
+					var extensionPercentage =
+						(MassPoints[Springs[s].PointIndex2].pos - MassPoints[Springs[s].PointIndex1].pos).magnitude /
+						Springs[s].RestLength;
 
-				Debug.DrawLine(
-					MassPoints[Springs[s].PointIndex1].pos,
-					MassPoints[Springs[s].PointIndex2].pos,
-					(Springs[s].Strength < 1.5f
-						? Color.Lerp(Color.blue, Color.red, extensionPercentage * 0.5f)
-						: Color.Lerp(Color.cyan, Color.magenta, extensionPercentage * 0.5f))
-				);
+					Debug.DrawLine(
+						MassPoints[Springs[s].PointIndex1].pos,
+						MassPoints[Springs[s].PointIndex2].pos,
+						(Springs[s].Strength < 1.5f
+							? Color.Lerp(Color.blue, Color.red, extensionPercentage * 0.5f)
+							: Color.Lerp(Color.cyan, Color.magenta, extensionPercentage * 0.5f))
+					);
+				}
 			}
 		}
 
 		public void FixedUpdate(float fixedTime, Action<VerletSim> additionalIntegration = null)
 		{
+			if (!UniversalConstantsBehaviour.Instance.EnablePhysics)
+			{
+				return;
+			}
+
 			for (var m = 0; m < MassPoints.Length; m++)
 			{
-				MassPoints[m].accel = Vector3.down * ForceDueToGravity;
+				MassPoints[m].accel = Vector3.down * Constants.ForceDueToGravity;
 			}
 
 			for (var s = 0; s < Springs.Length; s++)
@@ -180,8 +230,8 @@ namespace Orbitaldrop.Cyberelegans.Verlet
 					Springs[s].PointIndex1,
 					Springs[s].PointIndex2,
 					Springs[s].RestLength,
-					SpringForce * Springs[s].Strength,
-					SpringForce * Springs[s].Strength
+					Constants.SpringStrength * Springs[s].Strength,
+					Constants.SpringStrength * Springs[s].Strength
 				);
 			}
 
@@ -202,7 +252,7 @@ namespace Orbitaldrop.Cyberelegans.Verlet
 					MassPoints[m].vel = MassPoints[m].pos - MassPoints[m].previousPosition;
 					MassPoints[m].previousPosition = MassPoints[m].pos;
 					MassPoints[m].pos = MassPoints[m].pos +
-					                     MassPoints[m].vel * Damping +
+					                     MassPoints[m].vel * Constants.Damping +
 					                     MassPoints[m].accel * (fixedTime * fixedTime);
 				}
 			}

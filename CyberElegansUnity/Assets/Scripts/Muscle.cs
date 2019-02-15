@@ -34,6 +34,8 @@ namespace Orbitaldrop.Cyberelegans
         
         public void FixedUpdate()
         {
+            synapse.pos = (massPoints[p1].pos + massPoints[p2].pos) / 2.0f;
+            
             if (synapse.income > 0.0f)
             {
                 var musclforce = (massPoints[p1].pos - massPoints[p2].pos).normalized;

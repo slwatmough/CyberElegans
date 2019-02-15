@@ -25,7 +25,9 @@ namespace Orbitaldrop.Cyberelegans
         {
             income = Mathf.Min(income, 1.0f);
 
-            income *= UniversalConstantsBehaviour.Instance.SynapseSignalDegredationPerSecond * Time.deltaTime;
+            var lossPerSecond = UniversalConstantsBehaviour.Instance.SynapseSignalLossPercentagePerSecond;
+            var loss = income *  lossPerSecond * Time.deltaTime;
+            income = Mathf.Max(0.0f, income - loss);
         }
 
         public float GetActivity()

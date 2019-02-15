@@ -54,7 +54,26 @@ namespace Orbitaldrop.Cyberelegans
         private float dx;
 
         private VerletSim verlet = new VerletSim();
-        
+
+        public class VerletUniversalConstantsBridge : IConstants
+        {
+            public float SpringStrength
+            {
+                get { return UniversalConstantsBehaviour.Instance.VerletSpringStrength; }
+            }
+            public float Damping
+            {
+                get { return UniversalConstantsBehaviour.Instance.VerletDamping; }
+            }
+            public float ForceDueToGravity
+            {
+                get { return 9.81f * 0.1f; }
+            }
+            public float DrawPointScale
+            {
+                get { return 0.2f; }
+            }
+        }
         public CElegans(float length, int size, string neurons, string connections, string muscles, GameObject wormGO, GameObject neuronHolder, GameObject musclesHolder, GameObject masspointHolder, GameObject springHolder)
         {
             this.wormGO = wormGO;
@@ -74,121 +93,19 @@ namespace Orbitaldrop.Cyberelegans
 
             vshift = wormGO.transform.position + new Vector3(dl * size / 4.0f + 0.5f, 0.0f, dl / 3.0f / 2.0f);
 
+            verlet.Constants = new VerletUniversalConstantsBridge();
             verlet.CreateSimulatedShape(wormGO.transform.position, new VerletTestWorm.VerletWormFactory());
-            verlet.DrawPointScale = 0.05f;
-            
-            #region Head
-//            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-0.7f * dx, 0f, 0f)));
-//
-//            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, -dl * wp[0] / 2f, -0.35f * dl * wp[0])));
-//            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, -dl * wp[0] / 2f, 0.35f * dl * wp[0])));
-//            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, -0.35f * dl * wp[0], dl * wp[0] / 2f)));
-//            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, 0.35f * dl * wp[0], dl * wp[0] / 2f)));
-//
-//            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, dl * wp[0] / 2, 0.35f * dl * wp[0])));
-//            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, dl * wp[0] / 2, -0.35f * dl * wp[0])));
-//            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, 0.35f * dl * wp[0], - dl * wp[0] / 2f)));
-//            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1.5f * dx, -0.35f * dl * wp[0], - dl * wp[0] / 2f)));
-//
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[0], verlet.MassPoints[1]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[0], verlet.MassPoints[2]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[0], verlet.MassPoints[3]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[0], verlet.MassPoints[4]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[0], verlet.MassPoints[5]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[0], verlet.MassPoints[6]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[0], verlet.MassPoints[7]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[0], verlet.MassPoints[8]));
-//            /**/                                             
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[1], verlet.MassPoints[2]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[2], verlet.MassPoints[3]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[3], verlet.MassPoints[4]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[4], verlet.MassPoints[5]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[5], verlet.MassPoints[6]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[6], verlet.MassPoints[7]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[7], verlet.MassPoints[8]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[8], verlet.MassPoints[1]));
-//            /**/                                     
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[1], verlet.MassPoints[5]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[2], verlet.MassPoints[6]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[3], verlet.MassPoints[7]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[4], verlet.MassPoints[8]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[1], verlet.MassPoints[6]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[2], verlet.MassPoints[5]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[3], verlet.MassPoints[8]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[4], verlet.MassPoints[7]));
 
+            // Head.
             table[nextTable++] = new Neuron[MAX_NEURONS_IN_TABLE_ENTRY];
-            #endregion
 
-            int i;
-
-            #region Body
-            for (i = 1; i < size + 1; i++)
+            // Body.
+            for (int i = 1; i < size + 1; i++)
             {
-//                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.0f+i)*dx, 0f		, 0f )) );
-//                
-//                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx, -0.50f*dl*wp[i], -0.35f*dl*wp[i] )) );
-//                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx, -0.50f*dl*wp[i],  0.35f*dl*wp[i] )) );	
-//                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx, -0.35f*dl*wp[i],  0.50f*dl*wp[i] )) );
-//                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx,  0.35f*dl*wp[i],  0.50f*dl*wp[i] )) );
-//                                                                                                                 
-//                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx,  0.50f*dl*wp[i],  0.35f*dl*wp[i] )) );
-//                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx,  0.50f*dl*wp[i], -0.35f*dl*wp[i] )) );	
-//                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx,  0.35f*dl*wp[i], -0.50f*dl*wp[i] )) );
-//                addMPoint(new MassPoint(masspointHolder, 0.05f, vshift+new Vector3( -(1.5f+i)*dx, -0.35f*dl*wp[i], -0.50f*dl*wp[i] )) );
-//
-//                //============
-//
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9], verlet.MassPoints[i * 9]));
-//
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 1], verlet.MassPoints[i * 9 + 2]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 2], verlet.MassPoints[i * 9 + 3]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 3], verlet.MassPoints[i * 9 + 4]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 4], verlet.MassPoints[i * 9 + 5]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 5], verlet.MassPoints[i * 9 + 6]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 6], verlet.MassPoints[i * 9 + 7]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 7], verlet.MassPoints[i * 9 + 8]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 8], verlet.MassPoints[i * 9 + 1]));
-//                                     
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 1], verlet.MassPoints[i * 9 + 0]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 2], verlet.MassPoints[i * 9 + 0]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 3], verlet.MassPoints[i * 9 + 0]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 4], verlet.MassPoints[i * 9 + 0]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 5], verlet.MassPoints[i * 9 + 0]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 6], verlet.MassPoints[i * 9 + 0]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 7], verlet.MassPoints[i * 9 + 0]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[i * 9 + 8], verlet.MassPoints[i * 9 + 0]));
-//                                     
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 1], verlet.MassPoints[i * 9 + 0]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 2], verlet.MassPoints[i * 9 + 0]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 3], verlet.MassPoints[i * 9 + 0]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 4], verlet.MassPoints[i * 9 + 0]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 5], verlet.MassPoints[i * 9 + 0]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 6], verlet.MassPoints[i * 9 + 0]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 7], verlet.MassPoints[i * 9 + 0]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 8], verlet.MassPoints[i * 9 + 0]));
-//                /**/                 
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 1], verlet.MassPoints[i * 9 + 2]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 2], verlet.MassPoints[i * 9 + 3]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 3], verlet.MassPoints[i * 9 + 4]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 4], verlet.MassPoints[i * 9 + 5]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 5], verlet.MassPoints[i * 9 + 6]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 6], verlet.MassPoints[i * 9 + 7]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 7], verlet.MassPoints[i * 9 + 8]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 8], verlet.MassPoints[i * 9 + 1]));
-//                /**/                 
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 2], verlet.MassPoints[i * 9 + 1]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 3], verlet.MassPoints[i * 9 + 2]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 4], verlet.MassPoints[i * 9 + 3]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 5], verlet.MassPoints[i * 9 + 4]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 6], verlet.MassPoints[i * 9 + 5]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 7], verlet.MassPoints[i * 9 + 6]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 8], verlet.MassPoints[i * 9 + 7]));
-//                addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler / 2, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 1], verlet.MassPoints[i * 9 + 8]));
-
                 table[nextTable++] = new Neuron[MAX_NEURONS_IN_TABLE_ENTRY];
             }
 
+            #region Muscles
             addMuscle(new Muscle(verlet.MassPoints, 0 * 9 + 1, 1 * 9 + 1, "VL02"));
             addMuscle(new Muscle(verlet.MassPoints, 2 * 9 + 1, 1 * 9 + 1, "VL02"));
             addMuscle(new Muscle(verlet.MassPoints, 2 * 9 + 1, 3 * 9 + 1, "VL04"));
@@ -390,20 +307,8 @@ namespace Orbitaldrop.Cyberelegans
             addMuscle(new Muscle(verlet.MassPoints, 23 * 9 + 8, 22 * 9 + 8, "VL21"));
             #endregion
 
-            #region Tail
-//            addMPoint(new MassPoint(masspointHolder, 0.05f, vshift + new Vector3(-1 * dx - i * dx, 0, 0)));
-//
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 0], verlet.MassPoints[i * 9 + 0]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 1], verlet.MassPoints[i * 9 + 0]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 2], verlet.MassPoints[i * 9 + 0]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 3], verlet.MassPoints[i * 9 + 0]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 4], verlet.MassPoints[i * 9 + 0]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 5], verlet.MassPoints[i * 9 + 0]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 6], verlet.MassPoints[i * 9 + 0]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 7], verlet.MassPoints[i * 9 + 0]));
-//            addSpring(new Spring(springHolder, Physics.AUTODETECT, Physics.DefaultStiffnessScaler, Physics.DefaultFrictionScaler, verlet.MassPoints[(i - 1) * 9 + 8], verlet.MassPoints[i * 9 + 0]));
-            #endregion
-
+            // Tail is all done in verlet.
+            
             using (var reader = new StreamReader(new MemoryStream(System.Text.Encoding.UTF8.GetBytes(neurons))))
             {
                 while (!reader.EndOfStream)
@@ -486,12 +391,6 @@ namespace Orbitaldrop.Cyberelegans
                     addNeuroMuscleAxosByName(name, name2, weight);
                 }
             }
-
-            //neuronArray = neuron.ToArray();
-            //muscleArray = muscle.ToArray();
-            //springArray = spring.ToArray();
-            //mPointArray = mPoint.ToArray();
-            //tableArray = table.ConvertAll(te => te.ToArray()).ToArray();
         }
 
         private void addNeuron(string name, Vector3 pos, float threshold, char type, int clrIndex, string description)
@@ -512,10 +411,10 @@ namespace Orbitaldrop.Cyberelegans
 
             var _x1 = verlet.MassPoints[9 * i + 8].pos.x;
             var _x2 = verlet.MassPoints[9 * i + 17].pos.x;
-            var _y1 = verlet.MassPoints[9 * i + 1].pos.y;
-            var _y2 = verlet.MassPoints[9 * i + 6].pos.y;
-            var _z1 = verlet.MassPoints[9 * i + 3].pos.z;
-            var _z2 = verlet.MassPoints[9 * i + 8].pos.z;
+            var _y1 = verlet.MassPoints[9 * i + 6].pos.y;
+            var _y2 = verlet.MassPoints[9 * i + 1].pos.y;
+            var _z1 = verlet.MassPoints[9 * i + 8].pos.z;
+            var _z2 = verlet.MassPoints[9 * i + 3].pos.z;
 
             var ratioX = (pos.x - _x1) / Mathf.Abs(_x2 - _x1);
             var ratioY = (pos.y - _y1) / Mathf.Abs(_y2 - _y1);
@@ -612,6 +511,12 @@ namespace Orbitaldrop.Cyberelegans
             time += dt;
             
             neuronPosCorrection();
+
+            var db02 = Array.Find(this.neuron, n => n.name == "DB02");
+            if (db02 != null)
+            {
+                Debug.Log("DB02.income = " + db02.income);
+            }
         }
 
         public void FixedUpdate()
@@ -633,10 +538,10 @@ namespace Orbitaldrop.Cyberelegans
 
                 var _x1 = verlet.MassPoints[9 * i + 8].pos.x;
                 var _x2 = verlet.MassPoints[9 * i + 17].pos.x;
-                var _y1 = verlet.MassPoints[9 * i + 1].pos.y;
-                var _y2 = verlet.MassPoints[9 * i + 6].pos.y;
-                var _z1 = verlet.MassPoints[9 * i + 3].pos.z;
-                var _z2 = verlet.MassPoints[9 * i + 8].pos.z;
+                var _y1 = verlet.MassPoints[9 * i + 6].pos.y;
+                var _y2 = verlet.MassPoints[9 * i + 1].pos.y;
+                var _z1 = verlet.MassPoints[9 * i + 8].pos.z;
+                var _z2 = verlet.MassPoints[9 * i + 3].pos.z;
 
                 Neuron[] tableI = table[i];
 
@@ -648,27 +553,6 @@ namespace Orbitaldrop.Cyberelegans
                     var ratioY = tableIJ.ratioY;
                     var ratioZ = tableIJ.ratioZ;
 
-                    /*
-                    var p1 = (verlet.MassPoints[9 * i + 8].pos + verlet.MassPoints[9 + i + 1].pos) / 2.0f;
-                    var p2 = (verlet.MassPoints[9 * i + 2].pos + verlet.MassPoints[9 + i + 3].pos) / 2.0f;
-                    var p3 = (verlet.MassPoints[9 * i + 4].pos + verlet.MassPoints[9 + i + 5].pos) / 2.0f;
-                    var p4 = (verlet.MassPoints[9 * i + 6].pos + verlet.MassPoints[9 + i + 7].pos) / 2.0f;
-
-                    var p5 = (verlet.MassPoints[9 * i + 17].pos + verlet.MassPoints[9 + i + 10].pos) / 2.0f;
-                    var p6 = (verlet.MassPoints[9 * i + 11].pos + verlet.MassPoints[9 + i + 12].pos) / 2.0f;
-                    var p7 = (verlet.MassPoints[9 * i + 13].pos + verlet.MassPoints[9 + i + 14].pos) / 2.0f;
-                    var p8 = (verlet.MassPoints[9 * i + 15].pos + verlet.MassPoints[9 + i + 16].pos) / 2.0f;
-
-                    var pp1 = p1 * (1.0f - ratioX) + p5 * ratioX;
-                    var pp2 = p2 * (1.0f - ratioX) + p6 * ratioX;
-                    var pp3 = p3 * (1.0f - ratioX) + p7 * ratioX;
-                    var pp4 = p4 * (1.0f - ratioX) + p8 * ratioX;
-
-                    var q1 = pp1 * (1.0f - ratioZ) + pp4 * ratioZ;
-                    var q2 = pp2 * (1.0f - ratioZ) + pp3 * ratioZ;
-
-                    table[i][j].pos = q1 * ratioY + q2 * (1.0f - ratioY);*/
-                    
                     var x = _x1 + (ratioX * (_x1 - _x2));
                     var y = _y1 + (ratioY * (_y1 - _y2));
                     var z = _z1 + (ratioZ * (_z1 - _z2));

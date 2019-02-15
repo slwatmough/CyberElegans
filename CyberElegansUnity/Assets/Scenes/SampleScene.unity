@@ -296,16 +296,16 @@ MonoBehaviour:
   ShowMuscles: 1
   ShowSprings: 0
   SpringSnapPoint: 1.5
-  StiffCoeff: 60
-  FrictCoeff: 0.1
+  VerletSpringStrength: 0.375
+  VerletDamping: 1
   SynapseSignalGainPerSecond: 9
   SynapseSignalDegredationPerSecond: 5
   ShowNeurons: 1
-  ShowUnconnectedNeurons: 1
+  ShowUnconnectedNeurons: 0
   ShowAxons: 1
-  ShowMuscleAxons: 1
-  UpdateNeuronPositions: 0
-  EnablePhysics: 0
+  ShowMuscleAxons: 0
+  UpdateNeuronPositions: 1
+  EnablePhysics: 1
   AirFrictionCoefficient: 3
   GroundAbsorptionConstant: 10
   GroundRepulsionConstant: 10

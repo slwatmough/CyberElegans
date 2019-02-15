@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 public class UniversalConstantsBehaviour : MonoBehaviour
 {
@@ -18,19 +19,19 @@ public class UniversalConstantsBehaviour : MonoBehaviour
     [SerializeField]
     public float SpringSnapPoint = 1.2f;
 
-    [SerializeField]
-    public float StiffCoeff = 80.0f;
+    [FormerlySerializedAs("StiffCoeff")] [SerializeField]
+    public float VerletSpringStrength = 80.0f;
 
-    [SerializeField]
-    public float FrictCoeff = 0.6f;
+    [FormerlySerializedAs("FrictCoeff")] [SerializeField]
+    public float VerletDamping = 0.6f;
     
     [Header("Neurons")]
 
     [SerializeField]
     public float SynapseSignalGainPerSecond = 6.0f;
 
-    [SerializeField]
-    public float SynapseSignalDegredationPerSecond = 5.0f;
+    [FormerlySerializedAs("SynapseSignalDegredationPerSecond")] [SerializeField]
+    public float SynapseSignalLossPercentagePerSecond = 5.0f;
 
     [SerializeField]
     public bool ShowNeurons = true;

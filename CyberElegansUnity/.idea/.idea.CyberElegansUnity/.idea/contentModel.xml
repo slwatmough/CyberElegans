@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$USER_HOME$/Library/Caches/Rider2018.3/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2018.3/resharper-host/local/Transient/ReSharperHost/v183/SolutionCaches/_CyberElegansUnity.1461973347.00" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="CElegansGodBehaviour.cs" t="Include" />
+        <e p="NeuronBehaviour.cs" t="Include" />
+        <e p="Scripts" t="Include">
+          <e p="Axon.cs" t="Include" />
+          <e p="CElegans.cs" t="Include" />
+          <e p="Connector.cs" t="Include" />
+          <e p="Extern.cs" t="Include" />
+          <e p="MassPoint.cs" t="Include" />
+          <e p="Muscle.cs" t="Include" />
+          <e p="Neuron.cs" t="Include" />
+          <e p="Physics.cs" t="Include" />
+          <e p="Point.cs" t="Include" />
+          <e p="Spring.cs" t="Include" />
+          <e p="Synapse.cs" t="Include" />
+          <e p="VerletSimulation.cs" t="Include" />
+        </e>
+        <e p="UniversalConstantsBehaviour.cs" t="Include" />
+        <e p="VerletTestWorm.cs" t="Include" />
+        <e p="WormData" t="Include">
+          <e p="celegans280positions.old.txt" t="Include" />
+          <e p="celegans302connections.full.txt" t="Include" />
+          <e p="celegans302connections.txt" t="Include" />
+          <e p="celegans302positions.new.txt" t="Include" />
+          <e p="neuromuscle.txt" t="Include" />
+        </e>
+      </e>
+      <e p="CyberElegansUnity.sln" t="IncludeFlat" />
+      <e p="Library" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Temp" t="ExcludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+      </e>
+    </e>
+  </component>
+</project>
