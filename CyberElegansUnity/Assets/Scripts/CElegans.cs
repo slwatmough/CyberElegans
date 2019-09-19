@@ -456,36 +456,6 @@ namespace Orbitaldrop.Cyberelegans
             const bool mode3 = false;
             const bool mode4 = false;
 
-            if (Input.GetKey(KeyCode.Alpha1))
-            {
-                var neuron = Array.Find(this.neuron, n => n.name == "DB02");
-                if (neuron != null)
-                {
-                    Debug.Log("Sending to Neuron " + neuron.name);
-                    neuron.GetSignal(1.0f);
-                }
-            }
-
-            if (Input.GetKey(KeyCode.Alpha2))
-            {
-                var neuron = Array.Find(this.neuron, n => n.name == "RIML");
-                if (neuron != null)
-                {
-                    Debug.Log("Sending to Neuron " + neuron.name);
-                    neuron.GetSignal(1.0f);
-                }
-            }
-
-            if (Input.GetKey(KeyCode.Alpha3))
-            {
-                var neuron = Array.Find(this.neuron, n => n.name == "RIMR");
-                if (neuron != null)
-                {
-                    Debug.Log("Sending to Neuron " + neuron.name);
-                    neuron.GetSignal(1.0f);
-                }
-            }
-
             for (int n = 0; n < nextNeuron; n++) { neuron[n].CheckActivity(); }
             
             for (int m = 0; m < nextMuscle; m++) { muscle[m].synapse.CheckActivity(); }
@@ -511,12 +481,6 @@ namespace Orbitaldrop.Cyberelegans
             time += dt;
             
             neuronPosCorrection();
-
-            var db02 = Array.Find(this.neuron, n => n.name == "DB02");
-            if (db02 != null)
-            {
-                Debug.Log("DB02.income = " + db02.income);
-            }
         }
 
         public void FixedUpdate()
@@ -616,6 +580,62 @@ namespace Orbitaldrop.Cyberelegans
 //            {
 //                for (int s = 0; s < nextSpring; s++) { spring[s].Draw(springHolder); }
 //            }
+        }
+
+        public enum ShowNeuronOptions
+        {
+            Show,
+            ShowDownstream,
+        }
+
+        public void ShowNeuron(string partialNeuronName, ShowNeuronOptions options = ShowNeuronOptions.Show)
+        {
+            Array.ForEach(neuron, n =>
+            {
+                if (n != null)
+                {
+                    n.Visible = false;
+                }
+            });
+
+            Array.ForEach(neuron, n =>
+            {
+                if (n != null && n.name.StartsWith(partialNeuronName))
+                {
+                    SetVisibleRecursive(n, true, new HashSet<Neuron>());
+                }
+            });
+        }
+
+        private void SetVisibleRecursive(Neuron neuron, bool visible, HashSet<Neuron> doneSet)
+        {
+            if (!doneSet.Contains(neuron))
+            {
+                doneSet.Add(neuron);
+                neuron.Visible = visible;
+
+                foreach (var a in neuron.axons)
+                {
+                    var n = a.synapse as Neuron;
+                    if (n != null)
+                    {
+                        SetVisibleRecursive(n, visible, doneSet);
+                    }
+                }
+            }
+        }
+        
+        public void StimulateNeuron(string partialNeuronName)
+        {
+            var neurons = Array.FindAll(this.neuron, n => n != null && n.name.StartsWith(partialNeuronName));
+            if (neurons != null && neurons.Length > 0)
+            {
+                Array.ForEach(neurons,n =>
+                {
+                    Debug.Log("Stimulating neuron " + n.name);
+                    n.GetSignal(1.0f);
+                });
+            }
         }
     }
 }

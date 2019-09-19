@@ -14,6 +14,8 @@ namespace Orbitaldrop.Cyberelegans
         public float ratioZ { get; set; }
         public char type { get; set; }
         public int clrIndex { get; set; }
+        public bool Visible { get; set; }
+
         public readonly string description;
 
         private readonly bool pseudoneuron;
@@ -27,7 +29,8 @@ namespace Orbitaldrop.Cyberelegans
             this.type = type;
             this.clrIndex = clrIndex;
             this.description = description;
-
+            this.Visible = true;
+            
             this.pseudoneuron = name.StartsWith("Pse");
         }
 
@@ -60,6 +63,13 @@ namespace Orbitaldrop.Cyberelegans
 
         public void Draw(GameObject neuronHolder)
         {
+            if (sphere != null)
+            {
+                sphere.SetActive(Visible);
+            }
+            if (!Visible)
+                return;
+            
             float r = neuron_color_r[clrIndex];
             float g = neuron_color_g[clrIndex];
             float b = neuron_color_b[clrIndex];

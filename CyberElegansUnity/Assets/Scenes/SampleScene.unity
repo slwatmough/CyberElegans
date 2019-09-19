@@ -292,14 +292,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa62426495d10a4a941ea18406af93a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShowMassPoints: 1
+  ShowMassPoints: 0
   ShowMuscles: 1
   ShowSprings: 0
   SpringSnapPoint: 1.5
-  VerletSpringStrength: 0.375
+  VerletSpringStrength: 0.4
   VerletDamping: 1
-  SynapseSignalGainPerSecond: 9
-  SynapseSignalDegredationPerSecond: 5
+  SynapseSignalGainPerSecond: 15
+  SynapseSignalLossPercentagePerSecond: 11
   ShowNeurons: 1
   ShowUnconnectedNeurons: 0
   ShowAxons: 1
@@ -425,6 +425,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1694340790}
   - component: {fileID: 1694340789}
+  - component: {fileID: 1694340791}
+  - component: {fileID: 1694340792}
   m_Layer: 0
   m_Name: CElegans
   m_TagString: Untagged
@@ -461,3 +463,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1694340791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694340788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff1bed66efbe94ceaac667ede0b9e636, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Key: 49
+  Neurons:
+  - DB02
+--- !u!114 &1694340792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694340788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff1bed66efbe94ceaac667ede0b9e636, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Key: 50
+  Neurons:
+  - AVA

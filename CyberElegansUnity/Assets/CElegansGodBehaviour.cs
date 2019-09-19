@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CElegansGodBehaviour : MonoBehaviour
 {
-    Orbitaldrop.Cyberelegans.CElegans celegans;
+    public Orbitaldrop.Cyberelegans.CElegans CElegans;
     
     [SerializeField]
     TextAsset Neurons;
@@ -30,19 +30,19 @@ public class CElegansGodBehaviour : MonoBehaviour
         var springHolder = new GameObject("Springs");
         springHolder.transform.SetParent(transform, false);
 
-        celegans = new Orbitaldrop.Cyberelegans.CElegans(0.5f, 26, Neurons.text, Connections.text, Muscles.text, gameObject, neuronHolder, musclesHolder, masspointHolder, springHolder);
-        celegans.Update(0.0f);
+        CElegans = new Orbitaldrop.Cyberelegans.CElegans(0.5f, 26, Neurons.text, Connections.text, Muscles.text, gameObject, neuronHolder, musclesHolder, masspointHolder, springHolder);
+        CElegans.Update(0.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        celegans.Update(Time.deltaTime);
-        celegans.Draw();
+        CElegans.Update(Time.deltaTime);
+        CElegans.Draw();
     }
 
     void FixedUpdate()
     {
-        celegans.FixedUpdate();
+        CElegans.FixedUpdate();
     }
 }
