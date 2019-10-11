@@ -18,10 +18,14 @@ public class DebugMuscleTester : MonoBehaviour
     [SerializeField] private PistonMuscle[] Right;
     [SerializeField] private PistonMuscle[] Left;
     
+    [SerializeField] private PistonMuscle[] Dorsal;
+    [SerializeField] private PistonMuscle[] Ventral;
+    
     [SerializeField] private float Frequency = 1.0f;
     [SerializeField] private float WaveLength = 1.0f;
     [SerializeField] private float Amplitude = 1.0f;
     [SerializeField] private float GateWaveLength = 1.0f;
+    [SerializeField] private float TimeDirection = 1.0f;
     
     private float t = 0.0f;
 
@@ -36,7 +40,7 @@ public class DebugMuscleTester : MonoBehaviour
         TriggerMusclePairOnKey(KeyCode.E, KeyCode.D, PressE, PressD);
         TriggerMusclePairOnKey(KeyCode.R, KeyCode.F, PressR, PressF);
 
-        t += Time.deltaTime * Frequency;
+        t += Time.deltaTime * Frequency * TimeDirection;
 
         if (Input.GetKeyDown(KeyCode.K)) AutoWiggle = !AutoWiggle;
         
@@ -51,8 +55,7 @@ public class DebugMuscleTester : MonoBehaviour
 
                 var percent = (float) i / (float) Right.Length;
 
-                var sin = Amplitude * Mathf.Sin(WaveLength * ( t + percent * GateWaveLength))code
-                    ;
+                var sin = Amplitude * Mathf.Sin(WaveLength * (t + percent * GateWaveLength));
                 DR.Contract(sin);
                 VR.Contract(sin);
                 DL.Contract(-sin);

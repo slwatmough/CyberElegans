@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86bfdea1681cf4c8f909c942a14fd142, type: 3}
   m_Name: RTFConstants
   m_EditorClassIdentifier: 
+  Enabled: 0
   TangentialDragCurve:
     serializedVersion: 2
     m_Curve:

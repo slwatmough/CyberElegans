@@ -9,9 +9,9 @@ public class PistonMuscle : MonoBehaviour
 {
     [SerializeField] public Transform Root;
     [SerializeField] public Transform Attachment;
-    [SerializeField] private float Strength = 1.0f;
     [SerializeField] private float ContractFalloffPerSecond = 0.9f;
     [SerializeField] private bool EnableForce = true;
+    [SerializeField] private CElegansConstants CElegansConstants;
     
     private Rigidbody rootRigidBody;
     private Rigidbody attachmentRigidbody;
@@ -47,12 +47,12 @@ public class PistonMuscle : MonoBehaviour
             if (attachmentRigidbody != null && Mathf.Abs(contracting) > 0.1f)
             {
                 attachmentRigidbody.AddForceAtPosition(
-                    (Attachment.position - Root.position).normalized * -Strength * contracting, Attachment.position);
+                    (Attachment.position - Root.position).normalized * -CElegansConstants.MuscleStrength * contracting, Attachment.position);
             }
 
             if (rootRigidBody != null && Mathf.Abs(contracting) > 0.1f)
             {
-                rootRigidBody.AddForce((Root.position - Attachment.position).normalized * -Strength * contracting);
+                rootRigidBody.AddForce((Root.position - Attachment.position).normalized * -CElegansConstants.MuscleStrength * contracting);
             }
         }
     }

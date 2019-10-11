@@ -2,21 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="90921e0d-ede2-4738-b0a3-cabe22777ece" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.CyberElegansUnity/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Editor.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Editor/PistonMuscleGroupEditor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Editor/PistonMuscleGroupEditor.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/ResitiveForceTheoryConstants.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CElegansConstants.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CyberElegansUnity/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CyberElegansUnity/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CyberElegansUnity/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CyberElegansUnity/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CyberElegansUnity/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CyberElegansUnity/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CElegansGodBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CElegansGodBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CElegans.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CElegans.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Neuron.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Neuron.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DebugMuscleTester.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DebugMuscleTester.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Editor/RTFConstants.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Editor/RTFConstants.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PistonMuscle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PistonMuscle.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ResistiveForceTheory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ResistiveForceTheory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ResitiveForceTheoryConstants.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ResitiveForceTheoryConstants.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Ground.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Ground.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/WormBody.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/WormBody.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/WormHead.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/WormHead.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/WormNeck.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/WormNeck.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/WormSeperator.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/WormSeperator.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/WormTail.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/WormTail.mat.meta" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,6 +40,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/PistonMuscle.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/PistonMuscleGroup.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/CElegansGodBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/CElegansConstants.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/VerletSimulation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MassPoint.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Spring.cs" root0="FORCE_HIGHLIGHTING" />
@@ -70,10 +78,11 @@
         <option value="$PROJECT_DIR$/Assets/WormSegment.cs" />
         <option value="$PROJECT_DIR$/Assets/PistonMuscleGroup.cs" />
         <option value="$PROJECT_DIR$/Assets/Editor/PistonMuscleGroupEditor.cs" />
-        <option value="$PROJECT_DIR$/Assets/ResitiveForceTheoryConstants.cs" />
-        <option value="$PROJECT_DIR$/Assets/ResistiveForceTheory.cs" />
+        <option value="$PROJECT_DIR$/Assets/CElegansConstants.cs" />
         <option value="$PROJECT_DIR$/Assets/PistonMuscle.cs" />
+        <option value="$PROJECT_DIR$/Assets/ResitiveForceTheoryConstants.cs" />
         <option value="$PROJECT_DIR$/Assets/DebugMuscleTester.cs" />
+        <option value="$PROJECT_DIR$/Assets/ResistiveForceTheory.cs" />
       </list>
     </option>
   </component>
@@ -108,10 +117,10 @@
       <option name="userSelectedPid" value="false" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" pid="55072">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" pid="32058">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="55072" />
+      <option name="pid" value="32058" />
       <option name="userSelectedPid" value="false" />
       <method v="2" />
     </configuration>
@@ -131,6 +140,8 @@
       <workItem from="1568053430835" duration="3151000" />
       <workItem from="1568116686046" duration="5546000" />
       <workItem from="1568891523976" duration="5124000" />
+      <workItem from="1568964256125" duration="4265000" />
+      <workItem from="1570816847347" duration="1337000" />
     </task>
     <servers />
   </component>
@@ -293,6 +304,32 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/DebugMuscleTester.cs</url>
+          <line>48</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/DebugMuscleTester.cs" initialLine="48">
+            <startOffsets>
+              <option value="1835" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1876" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/DebugMuscleTester.cs</url>
+          <line>46</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/DebugMuscleTester.cs" initialLine="46">
+            <startOffsets>
+              <option value="1770" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1812" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
