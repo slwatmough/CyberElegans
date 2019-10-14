@@ -8,33 +8,14 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="CElegansConstants.cs" t="Include" />
-        <e p="CElegansGodBehaviour.cs" t="Include" />
         <e p="DebugMuscleTester.cs" t="Include" />
         <e p="Editor" t="Include">
           <e p="PistonMuscleGroupEditor.cs" t="Include" />
         </e>
-        <e p="NeuronBehaviour.cs" t="Include" />
-        <e p="NeuronProbe.cs" t="Include" />
         <e p="PistonMuscle.cs" t="Include" />
         <e p="PistonMuscleGroup.cs" t="Include" />
         <e p="ResistiveForceTheory.cs" t="Include" />
         <e p="ResitiveForceTheoryConstants.cs" t="Include" />
-        <e p="Scripts" t="Include">
-          <e p="Axon.cs" t="Include" />
-          <e p="CElegans.cs" t="Include" />
-          <e p="Connector.cs" t="Include" />
-          <e p="Extern.cs" t="Include" />
-          <e p="MassPoint.cs" t="Include" />
-          <e p="Muscle.cs" t="Include" />
-          <e p="Neuron.cs" t="Include" />
-          <e p="Physics.cs" t="Include" />
-          <e p="Point.cs" t="Include" />
-          <e p="Spring.cs" t="Include" />
-          <e p="Synapse.cs" t="Include" />
-          <e p="VerletSimulation.cs" t="Include" />
-        </e>
-        <e p="UniversalConstantsBehaviour.cs" t="Include" />
-        <e p="VerletTestWorm.cs" t="Include" />
         <e p="WormData" t="Include">
           <e p="celegans280positions.old.txt" t="Include" />
           <e p="celegans302connections.full.txt" t="Include" />

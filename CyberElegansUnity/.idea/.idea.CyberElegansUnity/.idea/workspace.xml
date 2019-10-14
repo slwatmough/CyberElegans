@@ -2,28 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="90921e0d-ede2-4738-b0a3-cabe22777ece" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/CElegansConstants.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CyberElegansUnity/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CyberElegansUnity/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CyberElegansUnity/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CyberElegansUnity/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CyberElegansUnity/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CyberElegansUnity/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/DebugMuscleTester.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DebugMuscleTester.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Editor/RTFConstants.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Editor/RTFConstants.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PistonMuscle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PistonMuscle.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ResistiveForceTheory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ResistiveForceTheory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ResitiveForceTheoryConstants.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ResitiveForceTheoryConstants.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Ground.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Ground.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/WormBody.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/WormBody.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/WormHead.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/WormHead.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/WormNeck.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/WormNeck.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/WormSeperator.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/WormSeperator.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/WormTail.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/WormTail.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/NeuronBehaviour.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/NeuronBehaviour.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/NeuronProbe.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/NeuronProbe.cs.meta" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,7 +33,6 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Neuron.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ResistiveForceTheory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CElegans.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/NeuronProbe.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/DebugMuscleTester.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Editor/PistonMuscleGroupEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/VerletTestWorm.cs" root0="FORCE_HIGHLIGHTING" />
@@ -141,7 +122,7 @@
       <workItem from="1568116686046" duration="5546000" />
       <workItem from="1568891523976" duration="5124000" />
       <workItem from="1568964256125" duration="4265000" />
-      <workItem from="1570816847347" duration="1337000" />
+      <workItem from="1570816847347" duration="1462000" />
     </task>
     <servers />
   </component>
@@ -239,32 +220,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/NeuronProbe.cs</url>
-          <line>31</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/NeuronProbe.cs" initialLine="25">
-            <startOffsets>
-              <option value="823" />
-            </startOffsets>
-            <endOffsets>
-              <option value="862" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/NeuronProbe.cs</url>
-          <line>27</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/NeuronProbe.cs" initialLine="27">
-            <startOffsets>
-              <option value="669" />
-            </startOffsets>
-            <endOffsets>
-              <option value="733" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/CElegans.cs</url>
